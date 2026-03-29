@@ -1,20 +1,12 @@
-// Reveal on scroll
-const reveals = document.querySelectorAll(".reveal");
-
+// subtle parallax
 window.addEventListener("scroll", () => {
-  const trigger = window.innerHeight * 0.85;
-
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-
-    if (top < trigger) {
-      el.classList.add("active");
-    }
-  });
+  const scrollY = window.scrollY;
+  document.querySelector(".hero").style.transform =
+    `translateY(${scrollY * 0.2}px)`;
 });
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// smooth scroll
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
   anchor.addEventListener("click", function(e) {
     e.preventDefault();
     document.querySelector(this.getAttribute("href"))
