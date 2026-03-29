@@ -1,8 +1,13 @@
-// subtle parallax
+// reveal animation
+const elements = document.querySelectorAll(".reveal");
+
 window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-  document.querySelector(".hero").style.transform =
-    `translateY(${scrollY * 0.2}px)`;
+  const trigger = window.innerHeight * 0.85;
+
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < trigger) el.classList.add("active");
+  });
 });
 
 // smooth scroll
