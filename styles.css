@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #0a0a0a;
+  color: #eaeaea;
+  line-height: 1.6;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(10,10,10,0.9);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #aaa;
+}
+
+.nav a:hover {
+  color: white;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.hero h2 {
+  font-size: 48px;
+  max-width: 700px;
+}
+
+.hero p {
+  margin: 20px 0;
+  max-width: 500px;
+  color: #aaa;
+}
+
+/* BUTTONS */
+.btn-primary, .btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #ff3b3b;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #ff3b3b;
+}
+
+/* SECTIONS */
+section {
+  padding: 100px 10%;
+}
+
+.feature {
+  margin-bottom: 60px;
+}
+
+.feature h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* VIDEO */
+video {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* DOWNLOAD */
+.download-buttons {
+  margin-top: 20px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
