@@ -1,76 +1,66 @@
-/* FINAL BOSS SCROLL ENGINE */
 
-// SMOOTH SCROLL
-document.querySelectorAll("a[href^='#']").forEach(anchor => {
-  anchor.addEventListener("click", e => {
-    e.preventDefault();
-    document.querySelector(anchor.getAttribute("href"))
-      .scrollIntoView({ behavior: "smooth" });
-  });
-});
+/* RAF LOOP ENGINE */
+let scrollY = 0;
+let targetY = 0;
 
-/* HERO PARALLAX */
-const heroPhone = document.querySelector(".hero-phone");
+function loop() {
+  targetY = window.scrollY;
+  scrollY += (targetY - scrollY) * 0.08;
 
-window.addEventListener("scroll", () => {
-  let y = window.scrollY;
-  heroPhone.style.transform = `translateY(${y * 0.2}px) scale(${1 - y*0.0003})`;
-});
+  updateScrollEffects(scrollY);
 
-/* STICKY SLIDES */
-const slides = document.querySelectorAll(".slide");
+  requestAnimationFrame(loop);
+}
+loop();
 
-window.addEventListener("scroll", () => {
-  const section = document.querySelector(".sticky-section");
+/* SCROLL STORY */
+const frames = document.querySelectorAll(".frame");
+const section = document.querySelector(".scroll-section");
+
+function updateScrollEffects(y) {
   const rect = section.getBoundingClientRect();
   const progress = -rect.top / (rect.height - window.innerHeight);
 
-  let index = Math.floor(progress * slides.length);
+  const index = Math.floor(progress * frames.length);
 
-  slides.forEach(s => s.classList.remove("active"));
+  frames.forEach(f => f.classList.remove("active"));
+  if (frames[index]) frames[index].classList.add("active");
 
-  if (slides[index]) {
-    slides[index].classList.add("active");
+  updateHero(y);
+}
+
+/* HERO PARALLAX */
+const phone = document.getElementById("phone");
+
+function updateHero(y) {
+  if (y < window.innerHeight) {
+    phone.style.transform =
+      `translateY(${y * 0.2}px) scale(${1 - y*0.0003})`;
   }
+}
+
+/* 3D TILT */
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+  phone.style.transform += ` rotateY(${x}deg) rotateX(${-y}deg)`;
 });
 
-/* FADE-IN GRID */
-const cards = document.querySelectorAll(".card");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
+/* NAV SMOOTH */
+document.querySelectorAll("a[href^='#']").forEach(a=>{
+  a.onclick=(e)=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute("href"))
+      .scrollIntoView({behavior:"smooth"});
+  };
 });
 
-cards.forEach(card => {
-  card.style.opacity = 0;
-  card.style.transform = "translateY(40px)";
-  card.style.transition = "0.6s";
-  observer.observe(card);
-});
-
-/* NAV ANIMATION */
-const nav = document.querySelector(".nav");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    nav.style.transform = "translateX(-50%) scale(0.95)";
-  } else {
-    nav.style.transform = "translateX(-50%) scale(1)";
-  }
-});
-
-/* INTRO FADE */
+/* LOAD FADE */
 window.onload = () => {
   document.body.style.opacity = 0;
   document.body.style.transition = "1s";
-  setTimeout(() => {
-    document.body.style.opacity = 1;
-  }, 100);
+  setTimeout(()=>document.body.style.opacity=1,100);
 };
 
-console.log("Rakshya Final Boss Loaded");
+console.log("RAKSHYA ULTRA MODE ACTIVE");
