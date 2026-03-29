@@ -3,73 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rakshya — Safety, Redefined</title>
+  <title>Rakshya — Personal Safety System</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- NAV -->
 <header class="nav">
   <div class="logo">Rakshya</div>
   <nav>
-    <a href="#story">Story</a>
-    <a href="#features">Features</a>
-    <a href="#demo">Demo</a>
+    <a href="#experience">Experience</a>
+    <a href="#system">System</a>
+    <a href="#security">Security</a>
     <a href="#download">Download</a>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>
-    Safety isn’t optional.<br>
-    <span>It’s essential.</span>
-  </h1>
-</section>
-
-<!-- STORY SCROLL -->
-<section id="story" class="story">
-  <div class="text-block reveal">
-    <h2>One tap can change everything.</h2>
+  <div class="hero-content">
+    <h1>Safety.<br>Reimagined.</h1>
+    <p>A complete personal safety ecosystem powered by real-time intelligence, automation, and end-to-end encryption.</p>
   </div>
 
-  <div class="text-block reveal">
-    <h2>Rakshya reacts before you can.</h2>
-  </div>
-
-  <div class="text-block reveal">
-    <h2>Encrypted. Automatic. Reliable.</h2>
+  <div class="hero-visual">
+    <video autoplay muted loop>
+      <source src="demo.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
-<!-- PHONE + FEATURE -->
-<section id="features" class="split">
-  <div class="phone">
-    <div class="screen">
-      <video autoplay muted loop>
-        <source src="demo.mp4" type="video/mp4">
-      </video>
+<!-- SCROLL STORY -->
+<section id="experience" class="story">
+  <div class="panel">
+    <h2>One tap.<br>Everything activates.</h2>
+    <p>SOS instantly triggers location tracking, alerts, and evidence recording.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Your voice becomes a trigger.</h2>
+    <p>Hidden activation phrase with intelligent fuzzy matching ensures response even under pressure.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Evidence, secured in real time.</h2>
+    <p>Audio and video are captured in encrypted chunks and uploaded automatically.</p>
+  </div>
+</section>
+
+<!-- FEATURES SYSTEM -->
+<section id="system" class="system">
+  <h2>The Rakshya System</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Smart SOS Engine</h3>
+      <p>Collects GPS → builds alert payload → encrypts per contact → dispatches via cloud pipeline.</p>
     </div>
+
+    <div class="card">
+      <h3>Live Location Tracking</h3>
+      <p>Foreground and background GPS with continuous tracking and Haversine distance calculation.</p>
+    </div>
+
+    <div class="card">
+      <h3>Voice Activation AI</h3>
+      <p>Continuous listening with auto-restart and fuzzy phrase detection for reliability.</p>
+    </div>
+
+    <div class="card">
+      <h3>Evidence Engine</h3>
+      <p>Dual camera + audio recording in 5-second chunks with secure cloud uploads.</p>
+    </div>
+
+    <div class="card">
+      <h3>Check-In System</h3>
+      <p>Scheduled safety check-ins with geofence detection and notification reminders.</p>
+    </div>
+
+    <div class="card">
+      <h3>Ride Verification</h3>
+      <p>Track routes and detect deviations from expected paths in real time.</p>
+    </div>
+
+    <div class="card">
+      <h3>Safe Places</h3>
+      <p>Find nearby hospitals, police, and emergency services using OpenStreetMap.</p>
+    </div>
+
+    <div class="card">
+      <h3>Fake Call System</h3>
+      <p>Simulated incoming calls with ringtone playback and timed triggers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="architecture">
+  <h2>Engineered for Reliability</h2>
+
+  <div class="arch-block">
+    <h3>Service-Based Architecture</h3>
+    <p>Each module operates independently — encryption, location, SOS, voice, evidence — ensuring resilience and scalability.</p>
   </div>
 
-  <div class="feature-text">
-    <h2>Built for real emergencies</h2>
-    <p>
-      Rakshya combines instant SOS alerts, voice triggers, and automated
-      evidence capture — all secured with end-to-end encryption.
-    </p>
+  <div class="arch-block">
+    <h3>State Management</h3>
+    <p>Centralized Zustand stores manage SOS, contacts, rides, check-ins, and system state in real time.</p>
+  </div>
 
-    <ul>
-      <li>Smart SOS with live tracking</li>
-      <li>Voice-trigger activation</li>
-      <li>Auto audio/video recording</li>
-      <li>Nearby safe-place detection</li>
-    </ul>
+  <div class="arch-block">
+    <h3>Background Execution</h3>
+    <p>Persistent background tasks ensure tracking and safety features remain active even when the app is closed.</p>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="security">
+  <h2>Privacy First. Always.</h2>
+
+  <div class="security-grid">
+
+    <div>
+      <h3>End-to-End Encryption</h3>
+      <p>All sensitive data is encrypted on-device using X25519 before transmission.</p>
+    </div>
+
+    <div>
+      <h3>Secure Key Storage</h3>
+      <p>Private keys are stored securely using device-level secure storage.</p>
+    </div>
+
+    <div>
+      <h3>No Central Exposure</h3>
+      <p>Data is encrypted per recipient — no readable payloads leave your device.</p>
+    </div>
+
   </div>
 </section>
 
 <!-- DEMO -->
-<section id="demo" class="demo">
-  <h2>See how it works</h2>
+<section class="demo">
+  <h2>See Rakshya in action</h2>
   <video controls>
     <source src="demo.mp4" type="video/mp4">
   </video>
@@ -77,17 +154,18 @@
 
 <!-- DOWNLOAD -->
 <section id="download" class="download">
-  <h2>Get Rakshya</h2>
-  <p>Real safety. Built for real life.</p>
+  <h2>Download Rakshya</h2>
+  <p>Available now for Android and iOS.</p>
 
   <div class="buttons">
-    <a href="rakshya.apk" class="btn primary">Android</a>
-    <a href="ios-link" class="btn ghost">iOS</a>
+    <a href="rakshya.apk" class="btn">Download APK</a>
+    <a href="ios-link" class="btn secondary">Download for iOS</a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Rakshya</p>
+  <p>Rakshya v3.0 — Built for real-world safety.</p>
 </footer>
 
 <script src="script.js"></script>
