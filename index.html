@@ -1,81 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rakshya — Safety System</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<header class="nav">
-  <div class="logo">Rakshya</div>
-  <nav>
-    <a href="#experience">Experience</a>
-    <a href="#system">System</a>
-    <a href="#download">Download</a>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1 id="heroTitle">Safety. Reimagined.</h1>
-    <p>Real-time protection powered by intelligent automation.</p>
-  </div>
-
-  <div class="phone" id="phone">
-    <video autoplay muted loop>
-      <source src="demo.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="glow"></div>
-</section>
-
-<!-- SCROLL STORY -->
-<section class="scroll-section" id="experience">
-  <div class="sticky">
-
-    <div class="frame" data-index="0">
-      <h2>One tap activates everything.</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rabi Dahal portfolio — embedded systems, IoT automation, and software prototypes."
+    />
+    <title>Rabi Dahal | Embedded Systems & IoT Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body class="site-body">
+    <div class="background-layer" aria-hidden="true">
+      <div class="grid-overlay"></div>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
     </div>
 
-    <div class="frame" data-index="1">
-      <h2>Your voice becomes the trigger.</h2>
-    </div>
+    <header id="site-header" class="site-header">
+      <nav class="container nav-row">
+        <a href="#home" class="brand">RD//LAB</a>
 
-    <div class="frame" data-index="2">
-      <h2>Evidence is captured instantly.</h2>
-    </div>
+        <button
+          id="mobile-toggle"
+          class="mobile-toggle"
+          aria-label="Toggle navigation"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          Menu
+        </button>
 
-  </div>
-</section>
+        <ul class="nav-links">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#skills">Skills</a></li>
+          <li><a class="nav-link" href="#credentials">Credentials</a></li>
+          <li><a class="nav-link" href="#github">GitHub</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-<!-- SYSTEM -->
-<section id="system" class="system">
-  <h2>The Rakshya System</h2>
-  <div class="grid">
-    <div class="card">Smart SOS Engine</div>
-    <div class="card">Voice AI Detection</div>
-    <div class="card">Encrypted Evidence</div>
-    <div class="card">Live GPS Tracking</div>
-    <div class="card">Ride Monitoring</div>
-    <div class="card">Check-in Automation</div>
-  </div>
-</section>
+      <div id="mobile-menu" class="mobile-menu">
+        <div class="container">
+          <div class="mobile-menu-panel">
+            <ul class="mobile-menu-links">
+              <li><a class="mobile-link" href="#about">About</a></li>
+              <li><a class="mobile-link" href="#projects">Projects</a></li>
+              <li><a class="mobile-link" href="#skills">Skills</a></li>
+              <li><a class="mobile-link" href="#credentials">Credentials</a></li>
+              <li><a class="mobile-link" href="#github">GitHub</a></li>
+              <li><a class="mobile-link" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<!-- DOWNLOAD -->
-<section id="download" class="download">
-  <h2>Get Rakshya</h2>
-  <a href="rakshya.apk" class="btn">Android</a>
-  <a href="#" class="btn ghost">iOS</a>
-</section>
+    <main>
+      <section id="home" class="section section-hero container">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <p class="hero-badge">
+              <span class="hero-dot"></span>
+              Kathmandu, Nepal · Prototypes over PowerPoints
+            </p>
 
-<footer>
-  <p>Rakshya v3.0</p>
-</footer>
+            <h1 class="hero-title">
+              I wire sensors, write code,
+              <span class="gradient-text">and chase weird ideas until they work.</span>
+            </h1>
 
-<script src="script.js"></script>
-</body>
+            <p class="hero-description">
+              I’m
+              <strong>Rabi Dahal — Embedded Systems Crafter | IoT & Automation Specialist</strong>.
+              I like building things that move from concept to reality fast, whether it’s an
+              algorithm visualizer, an automation prototype, or a small system that quietly solves
+              a real problem.
+            </p>
+
+            <div class="button-row">
+              <a href="#projects" class="button-link button-primary">Explore Projects</a>
+              <a
+                href="https://github.com/proobker"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="button-link button-secondary"
+                >GitHub Workspace</a
+              >
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal">
+            <p class="panel-title">build.notes</p>
+
+            <div class="photo-holder-wrap">
+              <p class="photo-holder-label">Photo Holder</p>
+              <div class="photo-holder-box">
+                <span class="photo-holder-path">
+                <img  class="photo-holder-path"src="assets/profile-photo.jpg" alt="Profile Photo">
+                </span>
+              </div>
+            </div>
+
+            <div class="panel-note-list">
+              <p><span>[focus]</span> Embedded systems, IoT workflows, and practical automation.</p>
+              <p><span>[style]</span> Learn by building. Break fast, fix faster, document learning.</p>
+              <p>
+                <span>[goal]</span> Become a strong engineer-researcher who can design robust
+                systems end-to-end.
+              </p>
+            </div>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <p class="mini-title">Core Stack</p>
+                <p>Python · C · HTML</p>
+              </div>
+              <div class="mini-card">
+                <p class="mini-title">Now Studying</p>
+                <p>Algorithms · Embedded Logic · Robotics</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <div class="content-panel reveal">
+          <p class="section-kicker">About</p>
+
+          <div class="about-grid">
+            <div>
+              <h2 class="section-title">Serious about building, still curious enough to experiment.</h2>
+              <p class="section-text">
+                I’m a science student, yes, but I don’t treat projects like assignments. I treat
+                them like mini labs. I like taking one idea, building a rough version, finding what
+                breaks, then rebuilding it cleaner. That cycle has taught me more than anything.
+              </p>
+              <p class="section-text">
+                Most of my interest sits at the intersection of hardware, logic, and software
+                behavior — embedded systems, IoT, automation, and algorithmic thinking. I’m not
+                trying to look perfect right now. I’m trying to become dangerously capable over
+                time.
+              </p>
+            </div>
+
+            <div class="info-stack">
+              <article class="info-card">
+                <p class="info-label">Location</p>
+                <p>Kathmandu, Nepal</p>
+              </article>
+              <article class="info-card">
+                <p class="info-label">Working Language</p>
+                <p>English (Full professional), Hindi (Professional)</p>
+              </article>
+              <article class="info-card">
+                <p class="info-label">Current Direction</p>
+                <p>Embedded intelligence + real-world automation tools</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section container">
+        <div class="section-header reveal">
+          <p class="section-kicker">Projects</p>
+          <h2 class="section-title">Thinking-first builds</h2>
+          <p class="section-text">
+            I don’t just ship projects to complete a list. I use them to test ideas, compare
+            approaches, and understand why systems behave the way they do.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <p class="card-badge badge-electric">Shipped</p>
+            <h3>Pathfinding Algorithm Visualizer</h3>
+            <p>
+              Built an A* visualizer in Python to make shortest-path logic visible and intuitive.
+              The interesting part was balancing correctness with a clean, understandable visual
+              flow.
+            </p>
+            <ul>
+              <li>• A* algorithm implementation</li>
+              <li>• Graphical shortest-path visualization</li>
+              <li>• Focus on algorithm behavior, not just output</li>
+            </ul>
+            <a href="https://github.com/proobker/A_Star_Algoritihm" target="_blank" rel="noreferrer noopener"
+              >View on GitHub ↗</a
+            >
+          </article>
+
+          <article class="project-card reveal">
+            <p class="card-badge badge-electric">Shipped</p>
+            <h3>Safeft-Driven Rakkshya App</h3>
+            <p>
+              I built an android app that made womens feel safe. 
+              The app used the phone's GPS and accelerometer to detect if the user was 
+              in a potentially unsafe situation and send alert to their emergency contacts.
+             
+            </p>
+            <ul>
+              <li>• Event-based thinking and simple state handling</li>
+              <li>• Designing for noisy real-world conditions</li>
+              <li>• Iterative prototyping mindset</li>
+            </ul>
+                        <a href="https://github.com/proobker/rakshya_app" target="_blank" rel="noreferrer noopener"
+              >View on GitHub ↗</a
+            >
+          </article>
+
+          <article class="project-card reveal">
+            <p class="card-badge badge-mint">In Design</p>
+            <h3>Automation Micro-Systems</h3>
+            <p>
+              I’m designing compact automation workflows that solve one sharp problem each: alerts,
+              scheduling, or environmental response. Small systems, tight feedback loops.
+            </p>
+            <ul>
+              <li>• Hardware + software integration planning</li>
+              <li>• Modular architecture for rapid iteration</li>
+              <li>• Documentation as part of engineering quality</li>
+            </ul>
+            <p class="project-note">Next milestone: first public demo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="section container">
+        <div class="section-header reveal">
+          <p class="section-kicker">Skills</p>
+          <h2 class="section-title">Depth over buzzwords</h2>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <h3>Programming</h3>
+            <ul>
+              <li>Python (problem solving, scripts, algorithm work)</li>
+              <li>C (low-level logic foundations)</li>
+              <li>HTML (structured interfaces and docs)</li>
+            </ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Tools</h3>
+            <ul>
+              <li>Matplotlib (visual reasoning and debugging)</li>
+              <li>Git & GitHub workflow</li>
+              <li>Terminal-first development habits</li>
+            </ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Engineering Areas</h3>
+            <ul>
+              <li>Embedded systems fundamentals</li>
+              <li>IoT and automation logic</li>
+              <li>Algorithmic design thinking</li>
+            </ul>
+          </article>
+          <article class="skill-card reveal">
+            <h3>Builder Habits</h3>
+            <ul>
+              <li>Rapid prototyping</li>
+              <li>Experiment logs and iteration loops</li>
+              <li>Learning in public, improving in private</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="credentials" class="section container">
+        <div class="credentials-grid">
+          <article class="credential-panel reveal">
+            <p class="section-kicker">Education</p>
+            <h2 class="small-title">Academic Foundation</h2>
+            <div class="credential-stack">
+              <article class="credential-card">
+                <h3>Trinity International Secondary School & College</h3>
+                <p>+2 Science (Physics, Chemistry, Computer Science)</p>
+                <p>
+                  Actively involved in sci-tech events, STEM projects, and collaboration-focused
+                  activities.
+                </p>
+              </article>
+              <article class="credential-card">
+                <h3>Gladstone Academy</h3>
+                <p>SEE GPA: 3.91</p>
+                <p>Participated in science expos, Red Cross volunteering, and public speaking.</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="credential-panel reveal">
+            <p class="section-kicker section-kicker-electric">Certifications</p>
+            <h2 class="small-title">Proof of Discipline</h2>
+            <div class="credential-stack compact">
+              <article class="credential-card">
+                <h3>CS50P (Harvard)</h3>
+                <p>Python Programming</p>
+              </article>
+              <article class="credential-card">
+                <h3>Digischool Global</h3>
+                <p>Ethical Software & Case Studies</p>
+              </article>
+            </div>
+            <p class="credential-footnote">
+              Certifications are useful, but I care most about what I can build with them.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="github" class="section container">
+        <div class="github-panel reveal">
+          <div class="github-head">
+            <div>
+              <p class="section-kicker">GitHub</p>
+              <h2 class="section-title">My public engineering trail</h2>
+              <p class="section-text">
+                I treat GitHub like a workshop wall — not everything is polished, but each commit
+                tells a story about how I think, test, and improve.
+              </p>
+            </div>
+            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener"
+              >@proobker ↗</a
+            >
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <p class="stat-label">Public Repos</p>
+              <p id="gh-repos" class="stat-value">--</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Followers</p>
+              <p id="gh-followers" class="stat-value">--</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Last Updated</p>
+              <p id="gh-updated" class="stat-date">loading...</p>
+            </article>
+          </div>
+
+          <div class="repo-area">
+            <h3>Recent repositories</h3>
+            <div id="gh-repo-list" class="repo-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-contact container">
+        <div class="contact-panel reveal">
+          <p class="section-kicker">Contact</p>
+          <h2 class="section-title">Building something meaningful? Let’s connect.</h2>
+          <p class="section-text">
+            I’m open to collaborations, internships, and research-aligned projects in embedded
+            systems, IoT, and software engineering.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:rrabi.dahal@gmail.com">rrabi.dahal@gmail.com</a>
+            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener"
+              >GitHub</a
+            >
+            <a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      © <span id="year"></span> Rabi Dahal · Built with intent, tested with curiosity.
+    </footer>
+  </body>
 </html>
