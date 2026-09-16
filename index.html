@@ -245,73 +245,11 @@
       <div class="section-container gallery-layout">
         <div class="grid-span-12">
           <div class="section-num font-mono">04 / SYSTEM BUILDS</div>
-          <h2 class="section-title display-shout text-split">DISC RELEASES.</h2>
-          <p class="gallery-subtitle font-mono">SELECTED BUILDS REPRESENTED AS INTERACTIVE COVERS. HOVER OR CLICK TO SPIN AND INJECT DEVIATIONS.</p>
+          <h2 class="section-title display-shout text-split">ARCS CREATED.</h2>
+          <p class="gallery-subtitle font-mono">SELECTED BUILDS REPRESENTED AS ARC REACTORS. HOVER TO CHARGE THE CORE — CLICK TO OPEN THE BUILD.</p>
         </div>
 
-        <!-- Record 1 -->
-        <div class="grid-span-6 record-container">
-          <div class="record-sleeve">
-            <img src="assets/project-qst.svg" alt="Sleeve 01" class="sleeve-art filter-bw">
-            <div class="record-vinyl">
-              <div class="vinyl-groove"></div>
-              <div class="vinyl-label" style="background-image: url('assets/qst-logo.svg');"></div>
-            </div>
-          </div>
-          <div class="record-meta font-mono">
-            <div class="record-index">04.1 // APP</div>
-            <div class="record-title">QST — QUEST SYSTEM</div>
-            <div class="record-tags">NEXT.JS // SUPABASE // GEMINI API // 2025</div>
-          </div>
-        </div>
-
-        <!-- Record 2 -->
-        <div class="grid-span-6 record-container">
-          <div class="record-sleeve">
-            <img src="assets/project-rakshya.svg" alt="Sleeve 02" class="sleeve-art filter-bw">
-            <div class="record-vinyl">
-              <div class="vinyl-groove"></div>
-              <div class="vinyl-label" style="background-image: url('assets/project-rakshya.svg');"></div>
-            </div>
-          </div>
-          <div class="record-meta font-mono">
-            <div class="record-index">04.2 // APP</div>
-            <div class="record-title">RAKSHYA — SAFETY SYSTEM</div>
-            <div class="record-tags">MOBILE SOS // LOCATION SHARING // 2025</div>
-          </div>
-        </div>
-
-        <!-- Record 3 -->
-        <div class="grid-span-6 record-container">
-          <div class="record-sleeve">
-            <img src="assets/project-automation.svg" alt="Sleeve 03" class="sleeve-art filter-bw">
-            <div class="record-vinyl">
-              <div class="vinyl-groove"></div>
-              <div class="vinyl-label" style="background-image: url('assets/project-automation.svg');"></div>
-            </div>
-          </div>
-          <div class="record-meta font-mono">
-            <div class="record-index">04.3 // SP</div>
-            <div class="record-title">AUTOMATION MICRO-SYSTEM</div>
-            <div class="record-tags">HW + SW INTEGRATION // MODULAR // 2026</div>
-          </div>
-        </div>
-
-        <!-- Record 4 -->
-        <div class="grid-span-6 record-container">
-          <div class="record-sleeve">
-            <img src="assets/project-pathfinder.svg" alt="Sleeve 04" class="sleeve-art filter-bw">
-            <div class="record-vinyl">
-              <div class="vinyl-groove"></div>
-              <div class="vinyl-label" style="background-image: url('assets/project-pathfinder.svg');"></div>
-            </div>
-          </div>
-          <div class="record-meta font-mono">
-            <div class="record-index">04.4 // ALGO</div>
-            <div class="record-title">PATHFINDING VISUALIZER</div>
-            <div class="record-tags">A* // ALGORITHM BEHAVIOR // 2025</div>
-          </div>
-        </div>
+        <div class="arc-gallery" id="arc-gallery"></div>
       </div>
       <div class="section-divider-line"></div>
     </section>
@@ -333,32 +271,7 @@
                 <th>YEAR</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="project-row" data-preview="assets/qst-logo.svg">
-                <td>01</td>
-                <td class="display-row-title">QST QUEST SYSTEM</td>
-                <td>LEAD BUILDER</td>
-                <td>2025</td>
-              </tr>
-              <tr class="project-row" data-preview="assets/project-rakshya.svg">
-                <td>02</td>
-                <td class="display-row-title">RAKSHYA SAFETY APP</td>
-                <td>BUILD + DESIGN</td>
-                <td>2025</td>
-              </tr>
-              <tr class="project-row" data-preview="assets/project-automation.svg">
-                <td>03</td>
-                <td class="display-row-title">AUTOMATION MICRO-SYSTEM</td>
-                <td><span class="status-badge status-planning">IN DESIGN</span></td>
-                <td>2026</td>
-              </tr>
-              <tr class="project-row" data-preview="assets/project-pathfinder.svg">
-                <td>04</td>
-                <td class="display-row-title">PATHFINDING VISUALIZER</td>
-                <td>ALGORITHM WORK</td>
-                <td>2025</td>
-              </tr>
-            </tbody>
+            <tbody id="project-table-body"></tbody>
           </table>
         </div>
       </div>
@@ -492,8 +405,8 @@
           </div>
         </div>
 
-        <!-- Signature vinyl graphics motif at bottom footer -->
-        <div class="grid-span-12 footer-vinyl-divider">
+        <!-- Signature arc reactor energy motif at bottom footer -->
+        <div class="grid-span-12 energy-divider">
           <div class="divider-grooves"></div>
           <div class="divider-text font-mono">RABI DAHAL — EMBEDDED // IOT // AUTOMATION — KATHMANDU [08]</div>
         </div>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#111"/>
+  <rect x="0" y="0" width="800" height="800" fill="url(#g)" opacity="0.5"/>
+  <defs>
+    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g stroke-width="2">
+    <rect x="290" y="190" width="220" height="220" fill="none" stroke="#F4F4F2"/>
+    <rect x="290" y="410" width="220" height="220" fill="none" stroke="#F4F4F2"/>
+    <rect x="510" y="190" width="220" height="220" fill="none" stroke="#F4F4F2"/>
+    <rect x="510" y="410" width="220" height="220" fill="none" stroke="#F4F4F2"/>
+  </g>
+  <g fill="#F5C842">
+    <rect x="80" y="80" width="180" height="180"/>
+  </g>
+  <g fill="#FF007F">
+    <rect x="80" y="280" width="180" height="180"/>
+  </g>
+  <g fill="#00C2FF">
+    <rect x="80" y="480" width="180" height="180"/>
+  </g>
+  <g fill="#7BD64A">
+    <rect x="280" y="80" width="180" height="180"/>
+  </g>
+  <g fill="#F4F4F2">
+    <circle cx="90" cy="90" r="6" fill="#F4F4F2"/>
+  </g>
+  <line x1="160" y1="620" x2="560" y2="620" stroke="#F5C842" stroke-width="3"/>
+  <line x1="160" y1="660" x2="400" y2="660" stroke="#F4F4F2" stroke-width="3"/>
+  <line x1="560" y1="660" x2="640" y2="660" stroke="#F4F4F2" stroke-width="3"/>
+  <circle cx="400" cy="80" r="5" fill="#F5C842"/>
+  <text x="520" y="700" font-family="monospace" font-size="16" letter-spacing="6" fill="#F4F4F2">RUBIKS</text>
+  <text x="520" y="730" font-family="monospace" font-size="11" letter-spacing="4" fill="#F5C842">SOLVER</text>
+</svg>

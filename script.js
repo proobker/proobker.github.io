@@ -96,18 +96,32 @@ function updateCursorPosition() {
 }
 
 function setupCursorHovers() {
-  const hoverables = document.querySelectorAll('.hover-btn, .nav-item, .record-sleeve, .project-row, .vibe-btn, .repo-item');
-  hoverables.forEach(el => {
-    el.addEventListener('mouseenter', () => {
+  const HOVER_SELECTOR = '.hover-btn, .nav-item, .arc-reactor, .project-row, .vibe-btn, .repo-item';
+  const hoverableDescendant = (el) => el && el.closest(HOVER_SELECTOR);
+  let hoveredEl = null;
+
+  document.addEventListener('mouseover', (e) => {
+    const hit = hoverableDescendant(e.target);
+    if (hit && hit !== hoveredEl) {
+      hoveredEl = hit;
       if (cursor) cursor.classList.add('active');
       playBlip('hover');
-    });
-    el.addEventListener('mouseleave', () => {
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (!hoveredEl) return;
+    const nextHoverable = e.relatedTarget ? hoverableDescendant(e.relatedTarget) : null;
+    if (nextHoverable !== hoveredEl) {
+      hoveredEl = null;
       if (cursor) cursor.classList.remove('active');
-    });
-    el.addEventListener('click', () => {
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (hoverableDescendant(e.target)) {
       playBlip('click');
-    });
+    }
   });
 }
 
@@ -120,14 +134,26 @@ function setupTextSplitting() {
     const originalText = element.textContent.trim();
     element.textContent = '';
 
-    [...originalText].forEach(char => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      if (char !== ' ') {
+    const words = originalText.split(/\s+/);
+    words.forEach((word, i) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.classList.add('word');
+
+      [...word].forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
         span.classList.add('letter-hover');
         span.addEventListener('mouseenter', () => playBlip('hover'));
+        wordSpan.appendChild(span);
+      });
+
+      element.appendChild(wordSpan);
+
+      if (i < words.length - 1) {
+        const space = document.createElement('span');
+        space.textContent = '\u00A0';
+        element.appendChild(space);
       }
-      element.appendChild(span);
     });
   });
 }
@@ -286,7 +312,7 @@ const vektorNarrations = {
   'sec-00': "VEKTOR: BOOT SEQUENCE COMPLETE. RABI DAHAL ONLINE. SCROLL TO TRAVERSE THE SYSTEM.",
   'sec-01': "VEKTOR: LOG ENTRY [01] — PCB ROTATION LINKED TO SCROLL DEPTH. WELCOME.",
   'sec-02': "VEKTOR: BIO REGISTERED. KATHMANDU GRID LOCKED. HOVER ELEMENTS TO ENGAGE.",
-  'sec-04': "VEKTOR: DISC RACKS LOADED. SWISS GRID OVERRIDES STYLINGS. ROTATION COMMITTED.",
+  'sec-04': "VEKTOR: ARC REACTORS ONLINE. CORES SPINNING ON SWISS GRID. CLICK TO OPEN THE BUILDS.",
   'sec-05': "VEKTOR: PROJECT GRAPHICS ENCODED. FLOATING BUFFERS DETECT MOUSE COORDINATES.",
   'sec-06': "VEKTOR: TIMELINE SCANNER COMMITTING. PROGRESS CORRESPONDS TO DEPTH.",
   'sec-07': "VEKTOR: GITHUB ARCHIVE LINKED. LIVE REPOSITORY COUNTS INCOMING.",
@@ -335,50 +361,58 @@ function triggerVektor(sectionId) {
 function setupFloatingPreviews() {
   const previewBox = document.getElementById('floating-preview');
   const previewImg = document.getElementById('preview-img');
-  const tableRows = document.querySelectorAll('.project-row');
+  if (!previewBox || !previewImg) return;
 
-  tableRows.forEach(row => {
-    row.addEventListener('mouseenter', () => {
-      const src = row.getAttribute('data-preview');
-      previewImg.src = src;
+  const projectRowOf = (el) => el && el.closest('.project-row');
+
+  document.addEventListener('mouseover', (e) => {
+    const row = projectRowOf(e.target);
+    if (row) {
+      previewImg.src = row.getAttribute('data-preview');
       previewBox.classList.add('visible');
-    });
+    }
+  });
 
-    row.addEventListener('mousemove', (e) => {
-      const x = e.clientX + 20;
-      const y = e.clientY + 20;
-      previewBox.style.left = `${x}px`;
-      previewBox.style.top = `${y}px`;
+  document.addEventListener('mousemove', (e) => {
+    const row = projectRowOf(e.target);
+    if (!row || !previewBox.classList.contains('visible')) return;
 
-      const rect = row.getBoundingClientRect();
-      const relativeX = (e.clientX - rect.left) / rect.width - 0.5;
-      const tiltY = relativeX * 25;
-      previewBox.style.transform = `translate(-50%, -50%) rotateY(${tiltY}deg) rotateX(10deg)`;
-    });
+    const x = e.clientX + 20;
+    const y = e.clientY + 20;
+    previewBox.style.left = `${x}px`;
+    previewBox.style.top = `${y}px`;
 
-    row.addEventListener('mouseleave', () => {
+    const rect = row.getBoundingClientRect();
+    const relativeX = (e.clientX - rect.left) / rect.width - 0.5;
+    const tiltY = relativeX * 25;
+    previewBox.style.transform = `translate(-50%, -50%) rotateY(${tiltY}deg) rotateX(10deg)`;
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (!projectRowOf(e.target)) return;
+    const nextRow = e.relatedTarget ? projectRowOf(e.relatedTarget) : null;
+    if (nextRow) return;
+    previewBox.classList.remove('visible');
+    previewBox.style.transform = 'translate(-50%, -50%) scale(0.6)';
+  });
+
+  document.addEventListener('click', (e) => {
+    const row = projectRowOf(e.target);
+    if (!row || !window.matchMedia('(pointer: coarse)').matches) return;
+
+    e.preventDefault();
+    if (previewBox.classList.contains('visible')) {
       previewBox.classList.remove('visible');
-      previewBox.style.transform = 'translate(-50%, -50%) scale(0.6)';
-    });
-
-    row.addEventListener('click', (e) => {
-      if (window.matchMedia('(pointer: coarse)').matches) {
-        e.preventDefault();
-        const src = row.getAttribute('data-preview');
-        if (previewBox.classList.contains('visible')) {
-          previewBox.classList.remove('visible');
-          return;
-        }
-        previewImg.src = src;
-        previewBox.classList.add('visible');
-        const rect = row.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top + rect.height / 2;
-        previewBox.style.left = `${x}px`;
-        previewBox.style.top = `${y}px`;
-        previewBox.style.transform = 'translate(-50%, -50%) rotateX(8deg)';
-      }
-    });
+      return;
+    }
+    previewImg.src = row.getAttribute('data-preview');
+    previewBox.classList.add('visible');
+    const rect = row.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    previewBox.style.left = `${x}px`;
+    previewBox.style.top = `${y}px`;
+    previewBox.style.transform = 'translate(-50%, -50%) rotateX(8deg)';
   });
 }
 
@@ -513,48 +547,149 @@ function updateAccentInterpolation() {
 const ghRepos = document.getElementById('gh-repos');
 const ghFollowers = document.getElementById('gh-followers');
 const ghUpdated = document.getElementById('gh-updated');
-const ghRepoList = document.getElementById('gh-repo-list');
 
-const fallbackRepos = [
-  {
-    name: "qst",
-    description: "Real-life activities into an RPG-style quest game",
-    language: "TypeScript",
-    html_url: "https://github.com/proobker/qst"
-  },
-  {
-    name: "rakshya_app",
-    description: "One-tap SOS personal safety mobile app",
-    language: "Dart",
-    html_url: "https://github.com/proobker/rakshya_app"
-  },
-  {
-    name: "pathfinding-visualizer",
-    description: "A* based shortest-path algorithm visualization",
-    language: "Python",
-    html_url: "https://github.com/proobker/pathfinding-visualizer"
-  }
-];
+const fallbackProjectsData = {
+  arcs: [
+    {
+      name: "qst", title: "QST", description: "RPG-style social adventure game — AI quests, proof uploads, XP badges.",
+      language: "TypeScript", stars: 1, forks: 0, year: 2026,
+      url: "https://github.com/proobker/qst", homepage: "https://qst-kappa.vercel.app",
+      art: "assets/qst-logo.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+    },
+    {
+      name: "rakshyaa", title: "RAKSHYAA", description: "V2 of the women's safety app.",
+      language: "Kotlin", stars: 2, forks: 1, year: 2026,
+      url: "https://github.com/proobker/rakshyaa", homepage: "https://rakshyaa.vercel.app",
+      art: "assets/project-rakshyaa.svg", tags: "KOTLIN // 2★ // 1 FORKS // 2026"
+    },
+    {
+      name: "terrasim", title: "TERRASIM", description: "Terrain simulation engine.",
+      language: "Python", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/terrasim", homepage: null,
+      art: "assets/project-terrasim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+    },
+    {
+      name: "flight-sim", title: "FLIGHT SIM", description: "SkyMesh — P2P aircraft conflict resolution simulator.",
+      language: "Python", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/flight-sim", homepage: null,
+      art: "assets/project-flight-sim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+    }
+  ],
+  projects: [
+    {
+      name: "qst", title: "QST", description: "RPG-style social adventure game — AI quests, proof uploads, XP badges.",
+      language: "TypeScript", stars: 1, forks: 0, year: 2026,
+      url: "https://github.com/proobker/qst", homepage: "https://qst-kappa.vercel.app",
+      art: "assets/qst-logo.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+    },
+    {
+      name: "rakshyaa", title: "RAKSHYAA", description: "V2 of the women's safety app.",
+      language: "Kotlin", stars: 2, forks: 1, year: 2026,
+      url: "https://github.com/proobker/rakshyaa", homepage: "https://rakshyaa.vercel.app",
+      art: "assets/project-rakshyaa.svg", tags: "KOTLIN // 2★ // 1 FORKS // 2026"
+    },
+    {
+      name: "terrasim", title: "TERRASIM", description: "Terrain simulation engine.",
+      language: "Python", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/terrasim", homepage: null,
+      art: "assets/project-terrasim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+    },
+    {
+      name: "flight-sim", title: "FLIGHT SIM", description: "SkyMesh — P2P aircraft conflict resolution simulator.",
+      language: "Python", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/flight-sim", homepage: null,
+      art: "assets/project-flight-sim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+    },
+    {
+      name: "rakshya_app", title: "RAKSHYA APP", description: "One-tap SOS personal safety mobile app (V1).",
+      language: "TypeScript", stars: 1, forks: 0, year: 2026,
+      url: "https://github.com/proobker/rakshya_app", homepage: "https://rakshyaapp.github.io",
+      art: "assets/project-rakshya.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+    },
+    {
+      name: "rubiks-solver", title: "RUBIKS SOLVER", description: "Interactive guide to solve a Rubik's cube and learn notation.",
+      language: "TypeScript", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/rubiks-solver", homepage: null,
+      art: "assets/project-rubiks.svg", tags: "TYPESCRIPT // 0★ // 0 FORKS // 2026"
+    },
+    {
+      name: "bnks", title: "BNKS", description: "Hackathon shipment — banking simulation built under pressure.",
+      language: "TypeScript", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/bnks", homepage: "https://bnks-nu.vercel.app",
+      art: "assets/project-bnks.svg", tags: "TYPESCRIPT // 0★ // 0 FORKS // 2026"
+    },
+    {
+      name: "A_Star_Algoritihm", title: "A* PATHFINDER", description: "Complete A* pathfinding visualizer for black-and-white map images.",
+      language: "Python", stars: 1, forks: 0, year: 2025,
+      url: "https://github.com/proobker/A_Star_Algoritihm", homepage: null,
+      art: "assets/project-pathfinder.svg", tags: "PYTHON // 1★ // 0 FORKS // 2025"
+    }
+  ]
+};
 
 const repoItemMarkup = (repo, index) => `
-  <a class="repo-item" href="${repo.html_url}" target="_blank" rel="noreferrer noopener">
+  <a class="repo-item" href="${repo.url || repo.html_url}" target="_blank" rel="noreferrer noopener">
     <div class="repo-index">${String(index + 1).padStart(2, '0')}</div>
-    <div class="repo-title">${repo.name}</div>
-    <div class="repo-info">${repo.language || '---'} // ${repo.stargazers_count ?? 0}★</div>
+    <div class="repo-title">${repo.title || repo.name}</div>
+    <div class="repo-info">${repo.language || '---'} // ${repo.stars ?? 0}★</div>
   </a>
 `;
 
-async function loadGitHubData() {
-  if (!ghRepos || !ghFollowers || !ghUpdated || !ghRepoList) return;
+const arcMarkup = (proj, index) => `
+  <div class="grid-span-6 arc-container">
+    <a class="arc-reactor" href="${proj.homepage || proj.url}" target="_blank" rel="noreferrer noopener" aria-label="Open ${proj.title}">
+      <img src="${proj.art}" alt="Arc casing ${String(index + 1).padStart(2, '0')}" class="reactor-casing filter-bw">
+      <div class="reactor-core">
+        <div class="reactor-rings"></div>
+        <div class="reactor-emblem" aria-hidden="true"></div>
+      </div>
+    </a>
+    <div class="arc-meta font-mono">
+      <div class="arc-index">04.${index + 1} // ${(proj.language || 'MULTI').toUpperCase()}</div>
+      <div class="arc-title">${proj.title}${proj.homepage ? ' ↗' : ''}</div>
+      <div class="arc-tags">${proj.tags}</div>
+    </div>
+  </div>
+`;
 
-  const setGitHubStats = (user, repos) => {
+const projectRowMarkup = (proj, index) => `
+  <tr class="project-row" data-preview="${proj.art}">
+    <td>${String(index + 1).padStart(2, '0')}</td>
+    <td class="display-row-title">${proj.title}</td>
+    <td>${proj.language || '---'}</td>
+    <td>${proj.year}</td>
+  </tr>
+`;
+
+function renderProjectsData(data) {
+  const arcGallery = document.getElementById('arc-gallery');
+  const tableBody = document.getElementById('project-table-body');
+  const repoList = document.getElementById('gh-repo-list');
+
+  if (arcGallery) arcGallery.innerHTML = data.arcs.map(arcMarkup).join('');
+  if (tableBody) tableBody.innerHTML = data.projects.map(projectRowMarkup).join('');
+  if (repoList) repoList.innerHTML = data.projects.map(repoItemMarkup).join('');
+}
+
+async function loadProjectsData() {
+  try {
+    const res = await fetch('assets/projects.json');
+    if (!res.ok) throw new Error('projects snapshot unavailable');
+    renderProjectsData(await res.json());
+  } catch (error) {
+    renderProjectsData(fallbackProjectsData);
+  }
+}
+
+async function loadGitHubData() {
+  if (!ghRepos || !ghFollowers || !ghUpdated) return;
+
+  const setGitHubStats = (user) => {
     ghRepos.textContent = String(user.public_repos ?? '--');
     ghFollowers.textContent = String(user.followers ?? '--');
     ghUpdated.textContent = user.updated_at
       ? new Date(user.updated_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short' })
       : 'recent';
-
-    ghRepoList.innerHTML = repos.map((repo, i) => repoItemMarkup(repo, i)).join('');
 
     const statRepos = document.getElementById('stat-repos');
     const statFollowers = document.getElementById('stat-followers');
@@ -567,24 +702,13 @@ async function loadGitHubData() {
   };
 
   try {
-    const [userRes, reposRes] = await Promise.all([
-      fetch("https://api.github.com/users/proobker"),
-      fetch("https://api.github.com/users/proobker/repos?sort=updated&per_page=3")
-    ]);
-
-    if (!userRes.ok || !reposRes.ok) {
-      throw new Error("GitHub API unavailable");
-    }
-
-    const user = await userRes.json();
-    const repos = await reposRes.json();
-
-    setGitHubStats(user, repos);
+    const userRes = await fetch("https://api.github.com/users/proobker");
+    if (!userRes.ok) throw new Error("GitHub API unavailable");
+    setGitHubStats(await userRes.json());
   } catch (error) {
     ghRepos.textContent = '3+';
     ghFollowers.textContent = 'Growing';
     ghUpdated.textContent = 'In progress';
-    ghRepoList.innerHTML = fallbackRepos.map((repo, i) => repoItemMarkup(repo, i)).join('');
   }
 }
 
@@ -607,6 +731,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupFloatingPreviews();
   setupPointingHand();
   runIntroSequence();
+  loadProjectsData();
   loadGitHubData();
 
   requestAnimationFrame(loop);
