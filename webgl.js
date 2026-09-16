@@ -59,46 +59,18 @@ function positionDiscForViewport() {
   }
 }
 
-// Build the Disc Mesh — arc reactor image with concentric groove bump map
+// Build the Disc Mesh — arc reactor image mapped onto the disc
 function createDisc() {
-  // 1. Bump texture — concentric spin grooves for tactile feel
-  const bumpCanvas = document.createElement('canvas');
-  bumpCanvas.width = 1024;
-  bumpCanvas.height = 1024;
-  const bumpCtx = bumpCanvas.getContext('2d');
-  bumpCtx.fillStyle = '#808080';
-  bumpCtx.fillRect(0, 0, 1024, 1024);
-  bumpCtx.strokeStyle = '#ffffff';
-  for (let r = 200; r < 500; r += 3) {
-    bumpCtx.lineWidth = 0.5 + Math.random() * 0.8;
-    bumpCtx.beginPath();
-    bumpCtx.arc(512, 512, r, 0, Math.PI * 2);
-    bumpCtx.stroke();
-  }
-  bumpCtx.strokeStyle = '#000000';
-  for (let r = 260; r < 470; r += 50) {
-    bumpCtx.lineWidth = 2.5;
-    bumpCtx.beginPath();
-    bumpCtx.arc(512, 512, r, 0, Math.PI * 2);
-    bumpCtx.stroke();
-  }
-  const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
-
-  // 2. Load arc reactor image as disc surface
   const textureLoader = new THREE.TextureLoader();
-  const reactorTexture = textureLoader.load('assets/arc-disc.png');
+  const reactorTexture = textureLoader.load('assets/arc.jpg');
   reactorTexture.colorSpace = THREE.SRGBColorSpace;
 
-  // 3. Disc geometry
   const discGeom = new THREE.CylinderGeometry(4.2, 4.2, 0.08, 64);
   const discMat = new THREE.MeshStandardMaterial({
-    color: 0x0c0c0c,
-    roughness: 0.26,
-    metalness: 0.7,
-    map: reactorTexture,
-    bumpMap: bumpTexture,
-    bumpScale: 0.002,
-    roughnessMap: bumpTexture
+    color: 0xffffff,
+    roughness: 0.5,
+    metalness: 0.3,
+    map: reactorTexture
   });
 
   discMesh = new THREE.Mesh(discGeom, discMat);
