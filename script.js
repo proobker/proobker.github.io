@@ -639,10 +639,7 @@ const arcMarkup = (proj, index) => `
   <div class="grid-span-6 arc-container">
     <a class="arc-reactor" href="${proj.homepage || proj.url}" target="_blank" rel="noreferrer noopener" aria-label="Open ${proj.title}">
       <img src="${proj.art}" alt="Arc casing ${String(index + 1).padStart(2, '0')}" class="reactor-casing filter-bw">
-      <div class="reactor-core">
-        <div class="reactor-rings"></div>
-        <div class="reactor-emblem" aria-hidden="true"></div>
-      </div>
+      <div class="reactor-core" aria-hidden="true"></div>
     </a>
     <div class="arc-meta font-mono">
       <div class="arc-index">04.${index + 1} // ${(proj.language || 'MULTI').toUpperCase()}</div>
