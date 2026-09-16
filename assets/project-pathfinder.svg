@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#111"/>
+  <rect x="0" y="0" width="800" height="800" fill="url(#g)" opacity="0.5"/>
+  <defs>
+    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="pulse" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#BD00FF"/>
+      <stop offset="1" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <circle cx="400" cy="400" r="290" fill="url(#pulse)" opacity="0.14"/>
+  <g fill="#0A0A0A" stroke="#BD00FF" stroke-width="2">
+    <rect x="180" y="180" width="32" height="32"/>
+    <rect x="360" y="180" width="32" height="32"/>
+    <rect x="540" y="180" width="32" height="32"/>
+    <rect x="180" y="360" width="32" height="32"/>
+    <rect x="360" y="360" width="32" height="32"/>
+    <rect x="540" y="360" width="32" height="32"/>
+    <rect x="180" y="540" width="32" height="32"/>
+    <rect x="360" y="540" width="32" height="32"/>
+    <rect x="540" y="540" width="32" height="32"/>
+  </g>
+  <g stroke="#F4F4F2" stroke-width="1.5" fill="none" opacity="0.8">
+    <path d="M212 212 H360 V360 H400"/>
+    <path d="M400 400 V540 H540 V540"/>
+    <path d="M400 400 V360 H360"/>
+    <path d="M212 212 V400 H400"/>
+    <path d="M592 212 V360 H400"/>
+  </g>
+  <circle cx="400" cy="400" r="8" fill="#BD00FF"/>
+  <circle cx="586" cy="586" r="6" fill="#F4F4F2"/>
+  <circle cx="196" cy="406" r="6" fill="#F4F4F2"/>
+  <text x="200" y="120" font-family="monospace" font-size="13" letter-spacing="5" fill="#F4F4F2">PATHFINDING</text>
+  <text x="200" y="140" font-family="monospace" font-size="11" letter-spacing="4" fill="#BD00FF">VISUALIZER // 2025</text>
+</svg>

@@ -1,423 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RABI DAHAL — EMBEDDED SYSTEMS, IOT & AUTOMATION</title>
+  <meta name="description" content="Scroll-driven portfolio of Rabi Dahal, embedded systems and IoT engineer. Brutalist layout, WebGL circuit disc, audio synth, and live GitHub integration.">
 
-    <title>Rabi Dahal | Embedded Systems & IoT Engineer</title>
-    <meta name="description" content="Portfolio of Rabi Dahal, an Embedded Systems and IoT Specialist in Kathmandu, Nepal. Explore thinking-first projects in Python, C, automation, and algorithmic design." />
-    <meta name="author" content="Rabi Dahal" />
-    <link rel="canonical" href="https://proobker.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://proobker.github.io/" />
+  <meta property="og:title" content="Rabi Dahal | Embedded Systems & IoT" />
+  <meta property="og:description" content="I wire sensors, write code, and chase weird ideas until they work." />
+  <meta property="og:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://proobker.github.io/" />
-    <meta property="og:title" content="Rabi Dahal | Embedded Systems & IoT" />
-    <meta property="og:description" content="I wire sensors, write code, and chase weird ideas until they work. View my engineering portfolio." />
-    <meta property="og:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Rabi Dahal - Embedded Systems and IoT Specialist" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rabi Dahal | Embedded Systems & IoT" />
+  <meta name="twitter:description" content="I wire sensors, write code, and chase weird ideas until they work." />
+  <meta name="twitter:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://proobker.github.io/" />
-    <meta name="twitter:title" content="Rabi Dahal | Embedded Systems & IoT" />
-    <meta name="twitter:description" content="I wire sensors, write code, and chase weird ideas until they work. View my engineering portfolio." />
-    <meta name="twitter:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0A0A0A" />
 
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-    <meta name="theme-color" content="#090d18" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
 
-    <script type="application/ld+json">
+  <noscript>
+    <style>
+      .scroll-section, .intro-overlay { opacity: 1 !important; transform: none !important; }
+      .intro-overlay { display: none !important; }
+      .left-index-nav { display: block !important; }
+      #webgl-canvas, #custom-cursor, #vektor-container, #floating-preview { display: none !important; }
+      .vektor-hidden { display: none !important; }
+    </style>
+  </noscript>
+
+  <script type="importmap">
     {
-      "@context": "https://schema.org/",
-      "@type": "Person",
-      "name": "Rabi Dahal",
-      "jobTitle": "Embedded Systems Crafter & IoT Specialist",
-      "url": "https://proobker.github.io/",
-      "image": "https://proobker.github.io/assets/Rabi-Dahal-Profile.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Kathmandu",
-        "addressCountry": "NP"
-      },
-      "sameAs": [
-        "https://github.com/proobker",
-        "https://linkedin.com/in/rabi-dahal"
-      ],
-      "knowsAbout": [
-        "Embedded Systems",
-        "Internet of Things (IoT)",
-        "Automation",
-        "Python",
-        "C",
-        "Algorithmic Thinking"
-      ]
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
     }
-    </script>
-  </head>
-  <body class="site-body">
-    <div class="background-layer" aria-hidden="true">
-      <div class="grid-overlay"></div>
-      <div class="orb orb-one"></div>
-      <div class="orb orb-two"></div>
+  </script>
+</head>
+<body>
+
+  <!-- Skip to content (keyboard accessibility) -->
+  <a href="#scroll-wrapper" class="skip-link">SKIP TO CONTENT</a>
+
+  <!-- WebGL Layer Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+  <!-- 12-Column Hairline Grid Motif -->
+  <div class="grid-overlay" aria-hidden="true">
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+  </div>
+
+  <!-- Custom Blend Cursor -->
+  <div id="custom-cursor" aria-hidden="true"></div>
+
+  <!-- Audio Context Mute Control (Top Right) -->
+  <div class="audio-control-panel">
+    <button id="mute-btn" class="hover-btn" aria-label="Toggle Sound" aria-pressed="false">
+      <span class="mono-label">RD//LAB:</span> <span id="sound-status" class="mono-value">MUTED</span>
+    </button>
+  </div>
+
+  <!-- Mobile Hamburger Toggle (Minimum 44x44px touch target) -->
+  <button id="mobile-menu-btn" class="hover-btn" aria-label="Toggle Menu" aria-controls="sidebar-nav" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Fixed Left Index Navigation (00-08) -->
+  <nav id="sidebar-nav" class="left-index-nav">
+    <div class="nav-header">RD//LAB</div>
+    <div class="nav-links">
+      <a href="#sec-00" class="nav-item active" data-sec="00"><span class="mono-num">00</span><span class="nav-hover-text">INTRO</span></a>
+      <a href="#sec-01" class="nav-item" data-sec="01"><span class="mono-num">01</span><span class="nav-hover-text">HERO</span></a>
+      <a href="#sec-02" class="nav-item" data-sec="02"><span class="mono-num">02</span><span class="nav-hover-text">BIO</span></a>
+      <a href="#sec-03" class="nav-item" data-sec="03"><span class="mono-num">03</span><span class="nav-hover-text">STATS</span></a>
+      <a href="#sec-04" class="nav-item" data-sec="04"><span class="mono-num">04</span><span class="nav-hover-text">WORK</span></a>
+      <a href="#sec-05" class="nav-item" data-sec="05"><span class="mono-num">05</span><span class="nav-hover-text">PROJECTS</span></a>
+      <a href="#sec-06" class="nav-item" data-sec="06"><span class="mono-num">06</span><span class="nav-hover-text">TIMELINE</span></a>
+      <a href="#sec-07" class="nav-item" data-sec="07"><span class="mono-num">07</span><span class="nav-hover-text">GITHUB</span></a>
+      <a href="#sec-08" class="nav-item" data-sec="08"><span class="mono-num">08</span><span class="nav-hover-text">CONTACT</span></a>
     </div>
+    <div class="nav-footer">2026©</div>
+  </nav>
 
-    <header id="site-header" class="site-header">
-      <nav class="container nav-row">
-        <a href="#home" class="brand">RD//LAB</a>
+  <!-- VEKTOR Guide Character Overlay -->
+  <div id="vektor-container" class="vektor-hidden">
+    <svg id="vektor-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="vektor-path" d="M30 30 L70 30 L80 50 L70 70 L30 70 L20 50 Z" />
+      <path class="vektor-path" d="M35 45 L45 45" />
+      <path class="vektor-path" d="M55 45 L65 45" />
+      <path class="vektor-path" d="M40 43 L40 47" />
+      <path class="vektor-path" d="M60 43 L60 47" />
+      <path class="vektor-path" d="M40 60 L60 60 L50 63 Z" />
+      <path class="vektor-path" d="M45 70 L45 85 L20 105 L80 105 L55 85 L55 70" />
+      <path class="vektor-path" d="M50 30 L50 15 L45 10 L55 10 L50 15" />
+      <path class="vektor-path" d="M25 80 L10 80 L5 75 L10 70 L15 75" />
+    </svg>
+    <div id="vektor-bubble">
+      <div class="bubble-header font-mono">VEKTOR // LOG</div>
+      <div id="vektor-text" class="font-mono">INITIALIZING TRANSLATION STREAM...</div>
+    </div>
+  </div>
 
-        <button
-          id="mobile-toggle"
-          class="mobile-toggle"
-          aria-label="Toggle navigation"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          Menu
-        </button>
+  <!-- Floating Project Preview (Section 05) -->
+  <div id="floating-preview" aria-hidden="true">
+    <img id="preview-img" src="" alt="Project Preview">
+  </div>
 
-        <ul class="nav-links">
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#projects">Projects</a></li>
-          <li><a class="nav-link" href="#skills">Skills</a></li>
-          <li><a class="nav-link" href="#credentials">Credentials</a></li>
-          <li><a class="nav-link" href="#github">GitHub</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+  <!-- Scroll Container -->
+  <main id="scroll-wrapper">
 
-      <div id="mobile-menu" class="mobile-menu">
-        <div class="container">
-          <div class="mobile-menu-panel">
-            <ul class="mobile-menu-links">
-              <li><a class="mobile-link" href="#about">About</a></li>
-              <li><a class="mobile-link" href="#projects">Projects</a></li>
-              <li><a class="mobile-link" href="#skills">Skills</a></li>
-              <li><a class="mobile-link" href="#credentials">Credentials</a></li>
-              <li><a class="mobile-link" href="#github">GitHub</a></li>
-              <li><a class="mobile-link" href="#contact">Contact</a></li>
-            </ul>
+    <!-- 00 — INTRO SEQUENCE -->
+    <section id="sec-00" class="section scroll-section full-screen-section">
+      <div class="intro-overlay">
+        <div class="intro-content">
+          <h1 class="intro-title display-shout text-split" id="intro-logo">RABI DAHAL.</h1>
+          <div class="intro-loader-container">
+            <div class="intro-loader-bar" id="intro-bar"></div>
+          </div>
+          <div class="intro-meta font-mono">SYSTEM READY — INTERACT TO START</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 — HERO SECTION -->
+    <section id="sec-01" class="section scroll-section">
+      <div class="section-container hero-layout">
+        <div class="grid-span-8 hero-text-block">
+<div class="hero-label font-mono text-accent">[ 01 / HERO ENTRY ]</div>
+        <div class="hero-badge font-mono"><span class="status-badge status-live"></span>CURRENTLY BUILDING AUTOMATION MICRO-SYSTEMS, KATHMANDU</div>
+        <h2 class="hero-title display-shout text-split">RABI DAHAL</h2>
+          <h3 class="hero-subtitle display-shout text-split">EMBEDDED ENGINEER</h3>
+          <p class="hero-tagline display-shout text-split">WIRING SENSORS, WRITING CODE & CHASING WEIRD IDEAS INTO WORKING MACHINES.</p>
+        </div>
+        <div class="grid-span-4 hero-visual-placeholder">
+          <div class="spinning-hint font-mono">
+            <span>[ ROTATION ACTIVE ]</span>
+            <span>SCROLL DEPTH CONTROLS RPM</span>
           </div>
         </div>
       </div>
-    </header>
+      <div class="section-divider-line"></div>
+    </section>
 
-    <main>
-      <section id="home" class="section section-hero container">
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <p class="hero-badge">
-              <span class="hero-dot"></span>
-              Kathmandu, Nepal · Prototypes over PowerPoints
-            </p>
-
-            <h1 class="hero-title">
-              I wire sensors, write code,
-              <span class="gradient-text">and chase weird ideas until they work.</span>
-            </h1>
-
-            <p class="hero-description">
-              I’m
-              <strong>Rabi Dahal — Embedded Systems Crafter | IoT & Automation Specialist</strong>.
-              I like building things that move from concept to reality fast, whether it’s an
-              algorithm visualizer, an automation prototype, or a small system that quietly solves
-              a real problem.
-            </p>
-
-            <div class="button-row">
-              <a href="#projects" class="button-link button-primary">Explore Projects</a>
-              <a
-                href="https://github.com/proobker"
-                target="_blank"
-                rel="noreferrer noopener"
-                class="button-link button-secondary"
-                >GitHub Workspace</a
-              >
-            </div>
+    <!-- 02 — BIOGRAPHY SECTION -->
+    <section id="sec-02" class="section scroll-section">
+      <div class="section-container biography-layout">
+        <div class="grid-span-8 bio-text-block">
+          <div class="section-num font-mono">02 / BIOGRAPHY</div>
+          <h2 class="section-title display-shout text-split">HARDWARE LOGIC.</h2>
+          <p class="bio-desc font-mono">
+            An embedded systems & IoT specialist in Kathmandu combining Python, C, and low-level logic foundations with real hardware. Hands-on lab-style building: prototype, break, rebuild cleaner. High-contrast engineering thinking meets dark ink-black panels.
+          </p>
+          <div class="bio-photo-wrapper">
+            <img src="assets/Rabi-Dahal-Profile.png" alt="Rabi Dahal Portrait" class="bio-photo filter-bw" loading="lazy" decoding="async" width="400" height="500">
           </div>
-
-          <aside class="hero-panel reveal">
-            <p class="panel-title">build.notes</p>
-
-            <div class="photo-holder-wrap">
-              <p class="photo-holder-label">Profile Photo</p>
-              <div class="photo-holder-box">
-                <span class="photo-holder-path">
-                <img  class="photo-holder-path"src="assets/Rabi-Dahal-Profile.png" alt="Rabi Dahal, Embedded Systems and IoT Engineer in Kathmandu, Nepal">
-                </span>
-              </div>
-            </div>
-
-            <div class="panel-note-list">
-              <p><span>[focus]</span> Embedded systems, IoT workflows, and practical automation.</p>
-              <p><span>[style]</span> Learn by building. Break fast, fix faster, document learning.</p>
-              <p>
-                <span>[goal]</span> Become a strong engineer-researcher who can design robust
-                systems end-to-end.
-              </p>
-            </div>
-
-            <div class="mini-grid">
-              <div class="mini-card">
-                <p class="mini-title">Core Stack</p>
-                <p>Python · C · HTML</p>
-              </div>
-              <div class="mini-card">
-                <p class="mini-title">Now Studying</p>
-                <p>Algorithms · Embedded Logic · Robotics</p>
-              </div>
-            </div>
-          </aside>
         </div>
-      </section>
-
-      <section id="about" class="section container">
-        <div class="content-panel reveal">
-          <p class="section-kicker">About</p>
-
-          <div class="about-grid">
-            <div>
-              <h2 class="section-title">Serious about building, still curious enough to experiment.</h2>
-              <p class="section-text">
-                I’m a science student, yes, but I don’t treat projects like assignments. I treat
-                them like mini labs. I like taking one idea, building a rough version, finding what
-                breaks, then rebuilding it cleaner. That cycle has taught me more than anything.
-              </p>
-              <p class="section-text">
-                Most of my interest sits at the intersection of hardware, logic, and software
-                behavior — embedded systems, IoT, automation, and algorithmic thinking. I’m not
-                trying to look perfect right now. I’m trying to become dangerously capable over
-                time.
-              </p>
+        <div class="grid-span-4 bio-meta-block">
+          <div class="bio-metadata font-mono">
+            <div class="meta-row">
+              <span class="meta-label">ROLE:</span>
+              <span class="meta-val">EMBEDDED // IOT</span>
             </div>
-
-            <div class="info-stack">
-              <article class="info-card">
-                <p class="info-label">Location</p>
-                <p>Kathmandu, Nepal</p>
-              </article>
-              <article class="info-card">
-                <p class="info-label">Working Language</p>
-                <p>English (Full professional), Hindi (Professional)</p>
-              </article>
-              <article class="info-card">
-                <p class="info-label">Current Direction</p>
-                <p>Embedded intelligence + real-world automation tools</p>
-              </article>
+            <div class="meta-row">
+              <span class="meta-label">EXPERIENCE:</span>
+              <span class="meta-val">2+ YEARS</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">LOC:</span>
+              <span class="meta-val">KATHMANDU // NEPAL</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">STACK:</span>
+              <span class="meta-val">PYTHON / C / HTML</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">CORE LOGIC:</span>
+              <span class="meta-val">ALGORITHMS // AUTOMATION</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">BUILDING STYLE:</span>
+              <span class="meta-val">PROTOTYPE / BREAK / REBUILD</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
 
-      <section id="projects" class="section container">
-        <div class="section-header reveal">
-          <p class="section-kicker">Projects</p>
-          <h2 class="section-title">Thinking-first builds</h2>
-          <p class="section-text">
-            I don’t just ship projects to complete a list. I use them to test ideas, compare
-            approaches, and understand why systems behave the way they do.
+    <!-- 03 — ACHIEVEMENTS SECTION -->
+    <section id="sec-03" class="section scroll-section">
+      <div class="section-container achievements-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">03 / ACHIEVEMENTS</div>
+          <h2 class="section-title display-shout text-split">QUANTIFIED TRAIL.</h2>
+        </div>
+        <div class="grid-span-3 stat-card">
+          <div class="stat-num display-shout" data-target="2">0</div>
+          <div class="stat-label font-mono">YEARS IN THE LAB</div>
+        </div>
+        <div class="grid-span-3 stat-card">
+          <div class="stat-num display-shout" id="stat-repos" data-target="0">0</div>
+          <div class="stat-label font-mono">PUBLIC REPOS DEPLOYED</div>
+        </div>
+        <div class="grid-span-3 stat-card">
+          <div class="stat-num display-shout" id="stat-followers" data-target="0">0</div>
+          <div class="stat-label font-mono">FOLLOWERS ON GITHUB</div>
+        </div>
+        <div class="grid-span-3 stat-card">
+          <div class="stat-num display-shout" data-target="100">0</div>
+          <div class="stat-label font-mono">CURIOSITY KEPT %</div>
+        </div>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
+
+    <!-- 04 — CREATIVE WORK / GALLERY SECTION -->
+    <section id="sec-04" class="section scroll-section">
+      <div class="section-container gallery-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">04 / SYSTEM BUILDS</div>
+          <h2 class="section-title display-shout text-split">DISC RELEASES.</h2>
+          <p class="gallery-subtitle font-mono">SELECTED BUILDS REPRESENTED AS INTERACTIVE COVERS. HOVER OR CLICK TO SPIN AND INJECT DEVIATIONS.</p>
+        </div>
+
+        <!-- Record 1 -->
+        <div class="grid-span-6 record-container">
+          <div class="record-sleeve">
+            <img src="assets/project-qst.svg" alt="Sleeve 01" class="sleeve-art filter-bw">
+            <div class="record-vinyl">
+              <div class="vinyl-groove"></div>
+              <div class="vinyl-label" style="background-image: url('assets/qst-logo.svg');"></div>
+            </div>
+          </div>
+          <div class="record-meta font-mono">
+            <div class="record-index">04.1 // APP</div>
+            <div class="record-title">QST — QUEST SYSTEM</div>
+            <div class="record-tags">NEXT.JS // SUPABASE // GEMINI API // 2025</div>
+          </div>
+        </div>
+
+        <!-- Record 2 -->
+        <div class="grid-span-6 record-container">
+          <div class="record-sleeve">
+            <img src="assets/project-rakshya.svg" alt="Sleeve 02" class="sleeve-art filter-bw">
+            <div class="record-vinyl">
+              <div class="vinyl-groove"></div>
+              <div class="vinyl-label" style="background-image: url('assets/project-rakshya.svg');"></div>
+            </div>
+          </div>
+          <div class="record-meta font-mono">
+            <div class="record-index">04.2 // APP</div>
+            <div class="record-title">RAKSHYA — SAFETY SYSTEM</div>
+            <div class="record-tags">MOBILE SOS // LOCATION SHARING // 2025</div>
+          </div>
+        </div>
+
+        <!-- Record 3 -->
+        <div class="grid-span-6 record-container">
+          <div class="record-sleeve">
+            <img src="assets/project-automation.svg" alt="Sleeve 03" class="sleeve-art filter-bw">
+            <div class="record-vinyl">
+              <div class="vinyl-groove"></div>
+              <div class="vinyl-label" style="background-image: url('assets/project-automation.svg');"></div>
+            </div>
+          </div>
+          <div class="record-meta font-mono">
+            <div class="record-index">04.3 // SP</div>
+            <div class="record-title">AUTOMATION MICRO-SYSTEM</div>
+            <div class="record-tags">HW + SW INTEGRATION // MODULAR // 2026</div>
+          </div>
+        </div>
+
+        <!-- Record 4 -->
+        <div class="grid-span-6 record-container">
+          <div class="record-sleeve">
+            <img src="assets/project-pathfinder.svg" alt="Sleeve 04" class="sleeve-art filter-bw">
+            <div class="record-vinyl">
+              <div class="vinyl-groove"></div>
+              <div class="vinyl-label" style="background-image: url('assets/project-pathfinder.svg');"></div>
+            </div>
+          </div>
+          <div class="record-meta font-mono">
+            <div class="record-index">04.4 // ALGO</div>
+            <div class="record-title">PATHFINDING VISUALIZER</div>
+            <div class="record-tags">A* // ALGORITHM BEHAVIOR // 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
+
+    <!-- 05 — FAMOUS PROJECTS SECTION -->
+    <section id="sec-05" class="section scroll-section">
+      <div class="section-container projects-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">05 / MAJOR INDEX</div>
+          <h2 class="section-title display-shout text-split">KEY BUILDS.</h2>
+        </div>
+        <div class="grid-span-12 project-table-wrapper">
+          <table class="project-table font-mono">
+            <thead>
+              <tr class="table-header-row">
+                <th>INDEX</th>
+                <th>PROJECT TITLE</th>
+                <th>ROLE</th>
+                <th>YEAR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="project-row" data-preview="assets/qst-logo.svg">
+                <td>01</td>
+                <td class="display-row-title">QST QUEST SYSTEM</td>
+                <td>LEAD BUILDER</td>
+                <td>2025</td>
+              </tr>
+              <tr class="project-row" data-preview="assets/project-rakshya.svg">
+                <td>02</td>
+                <td class="display-row-title">RAKSHYA SAFETY APP</td>
+                <td>BUILD + DESIGN</td>
+                <td>2025</td>
+              </tr>
+              <tr class="project-row" data-preview="assets/project-automation.svg">
+                <td>03</td>
+                <td class="display-row-title">AUTOMATION MICRO-SYSTEM</td>
+                <td><span class="status-badge status-planning">IN DESIGN</span></td>
+                <td>2026</td>
+              </tr>
+              <tr class="project-row" data-preview="assets/project-pathfinder.svg">
+                <td>04</td>
+                <td class="display-row-title">PATHFINDING VISUALIZER</td>
+                <td>ALGORITHM WORK</td>
+                <td>2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
+
+    <!-- 06 — TIMELINE SECTION -->
+    <section id="sec-06" class="section scroll-section">
+      <div class="section-container timeline-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">06 / PATHWAY</div>
+          <h2 class="section-title display-shout text-split">CHRONOLOGY.</h2>
+        </div>
+        <div class="grid-span-4 timeline-left font-mono">
+          <p class="timeline-intro">
+            A visual flow of engineering evolution. The central timeline progress bar fills dynamically in sync with viewport scroll position.
           </p>
         </div>
-
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <p class="card-badge badge-electric">Shipped</p>
-            <h3>QST</h3>
-            <p>qst is a Next.js app that turns real‑life activities into an RPG‑style game: players get AI‑generated quests tied to their hobbies and location, submit proof of completion, and earn XP and badges when over half of their friends approve the post. It uses Supabase for auth, database, and storage, and optionally the Gemini API for quest generation.</p>
-            <ul>
-              <li>• Next.js framework for responsive web application</li>
-              <li>• Supabase integration for authentication, database, and storage</li>
-              <li>• Gemini API for AI-generated quests (optional)</li>
-              <li>• Social approval system for quest validation</li>
-            </ul>
-            <a href="https://github.com/proobker/qst" target="_blank" rel="noreferrer noopener">
-              View on GitHub ↗
-            </a>
-          </article>
-
-          <article class="project-card reveal">
-            <p class="card-badge badge-electric">Shipped</p>
-            <h3>Rakshya</h3>
-            <p>Rakshya is a personal safety mobile app offering one‑tap SOS, voice‑triggered alerts, live location sharing, ride monitoring, scheduled check‑ins, evidence capture, and encrypted messaging to trusted contacts.</p>
-            <ul>
-              <li>• One-tap SOS emergency activation</li>
-              <li>• Voice-triggered alerts for hands-free operation</li>
-              <li>• Real-time location sharing with trusted contacts</li>
-              <li>• Encrypted messaging for secure communication</li>
-            </ul>
-            <a href="https://github.com/proobker/rakshya_app" target="_blank" rel="noreferrer noopener">
-              View on GitHub ↗
-            </a>
-          </article>
-
-          <article class="project-card reveal">
-            <p class="card-badge badge-mint">In Design</p>
-            <h3>Automation Micro-system</h3>
-            <p>I’m designing compact automation workflows that solve one sharp problem each: alerts, scheduling, or environmental response. Small systems, tight feedback loops.</p>
-            <ul>
-              <li>• Hardware + software integration planning</li>
-              <li>• Modular architecture for rapid iteration</li>
-              <li>• Documentation as part of engineering quality</li>
-            </ul>
-            <p class="project-note">Next milestone: first public demo.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="skills" class="section container">
-        <div class="section-header reveal">
-          <p class="section-kicker">Skills</p>
-          <h2 class="section-title">Depth over buzzwords</h2>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card reveal">
-            <h3>Programming</h3>
-            <ul>
-              <li>Python (problem solving, scripts, algorithm work)</li>
-              <li>C (low-level logic foundations)</li>
-              <li>HTML (structured interfaces and docs)</li>
-            </ul>
-          </article>
-          <article class="skill-card reveal">
-            <h3>Tools</h3>
-            <ul>
-              <li>Matplotlib (visual reasoning and debugging)</li>
-              <li>Git & GitHub workflow</li>
-              <li>Terminal-first development habits</li>
-            </ul>
-          </article>
-          <article class="skill-card reveal">
-            <h3>Engineering Areas</h3>
-            <ul>
-              <li>Embedded systems fundamentals</li>
-              <li>IoT and automation logic</li>
-              <li>Algorithmic design thinking</li>
-            </ul>
-          </article>
-          <article class="skill-card reveal">
-            <h3>Builder Habits</h3>
-            <ul>
-              <li>Rapid prototyping</li>
-              <li>Experiment logs and iteration loops</li>
-              <li>Learning in public, improving in private</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="credentials" class="section container">
-        <div class="credentials-grid">
-          <article class="credential-panel reveal">
-            <p class="section-kicker">Education</p>
-            <h2 class="small-title">Academic Foundation</h2>
-            <div class="credential-stack">
-              <article class="credential-card">
-                <h3>Trinity International Secondary School & College</h3>
-                <p>+2 Science (Physics, Chemistry, Computer Science)</p>
-                <p>
-                  Actively involved in sci-tech events, STEM projects, and collaboration-focused
-                  activities.
-                </p>
-              </article>
-              <article class="credential-card">
-                <h3>Gladstone Academy</h3>
-                <p>SEE GPA: 3.91</p>
-                <p>Participated in science expos, Red Cross volunteering, and public speaking.</p>
-              </article>
+        <div class="grid-span-8 timeline-right">
+          <div class="timeline-vertical-path">
+            <div id="timeline-progress" class="timeline-fill"></div>
+          </div>
+          <div class="timeline-events">
+            <div class="timeline-event">
+              <div class="event-marker"></div>
+              <div class="event-year font-mono">2024.05</div>
+              <h3 class="event-title display-shout">FOUNDATION SEED</h3>
+              <p class="event-desc font-mono">Completed SEE with a 3.91 GPA at Gladstone Academy. Science expos, Red Cross volunteering, public speaking while the engineering itch formed.</p>
             </div>
-          </article>
-
-          <article class="credential-panel reveal">
-            <p class="section-kicker section-kicker-electric">Certifications</p>
-            <h2 class="small-title">Proof of Discipline</h2>
-            <div class="credential-stack compact">
-              <article class="credential-card">
-                <h3>CS50P (Harvard)</h3>
-                <p>Python Programming</p>
-              </article>
-              <article class="credential-card">
-                <h3>Digischool Global</h3>
-                <p>Ethical Software & Case Studies</p>
-              </article>
+            <div class="timeline-event">
+              <div class="event-marker"></div>
+              <div class="event-year font-mono">2024.09</div>
+              <h3 class="event-title display-shout">PYTHON FOUNDATIONS</h3>
+              <p class="event-desc font-mono">Started +2 Science at Trinity College. Earned CS50P (Harvard) and began solving algorithm problems in Python consistently.</p>
             </div>
-            <p class="credential-footnote">
-              Certifications are useful, but I care most about what I can build with them.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="github" class="section container">
-        <div class="github-panel reveal">
-          <div class="github-head">
-            <div>
-              <p class="section-kicker">GitHub</p>
-              <h2 class="section-title">My public engineering trail</h2>
-              <p class="section-text">
-                I treat GitHub like a workshop wall — not everything is polished, but each commit
-                tells a story about how I think, test, and improve.
-              </p>
+            <div class="timeline-event">
+              <div class="event-marker"></div>
+              <div class="event-year font-mono">2025.07</div>
+              <h3 class="event-title display-shout">FULL-STACK DETOUR</h3>
+              <p class="event-desc font-mono">Built QST (Next.js + Supabase + Gemini) turning real-life activities into an RPG quest game, and designed Rakshya, a personal safety mobile system.</p>
             </div>
-            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener"
-              >@proobker ↗</a
-            >
-          </div>
-
-          <div class="stats-grid">
-            <article class="stat-card">
-              <p class="stat-label">Public Repos</p>
-              <p id="gh-repos" class="stat-value">--</p>
-            </article>
-            <article class="stat-card">
-              <p class="stat-label">Followers</p>
-              <p id="gh-followers" class="stat-value">--</p>
-            </article>
-            <article class="stat-card">
-              <p class="stat-label">Last Updated</p>
-              <p id="gh-updated" class="stat-date">loading...</p>
-            </article>
-          </div>
-
-          <div class="repo-area">
-            <h3>Recent repositories</h3>
-            <div id="gh-repo-list" class="repo-grid"></div>
+            <div class="timeline-event">
+              <div class="event-marker"></div>
+              <div class="event-year font-mono">2026.02</div>
+              <h3 class="event-title display-shout">EMBEDDED FOCUS</h3>
+              <p class="event-desc font-mono">Shifting toward embedded intelligence and real-world automation micro-systems — tight feedback loops, hardware plus software, design end-to-end.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
 
-      <section id="contact" class="section section-contact container">
-        <div class="contact-panel reveal">
-          <p class="section-kicker">Contact</p>
-          <h2 class="section-title">Building something meaningful? Let’s connect.</h2>
-          <p class="section-text">
-            I’m open to collaborations, internships, and research-aligned projects in embedded
-            systems, IoT, and software engineering.
-          </p>
-          <div class="contact-links">
-            <a href="mailto:rrabi.dahal@gmail.com">rrabi.dahal@gmail.com</a>
-            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener"
-              >GitHub</a
-            >
-            <a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener"
-              >LinkedIn</a
-            >
+    <!-- 07 — GITHUB SECTION -->
+    <section id="sec-07" class="section scroll-section">
+      <div class="section-container github-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">07 / PUBLIC ARCHIVE</div>
+          <h2 class="section-title display-shout text-split">GITHUB TRAIL.</h2>
+        </div>
+        <div class="grid-span-12 github-stats-row">
+          <div class="github-stat font-mono">
+            <span class="github-stat-value" id="gh-repos">--</span>
+            <span class="github-stat-label">PUBLIC REPOS</span>
+          </div>
+          <div class="github-stat font-mono">
+            <span class="github-stat-value" id="gh-followers">--</span>
+            <span class="github-stat-label">FOLLOWERS</span>
+          </div>
+          <div class="github-stat font-mono">
+            <span class="github-stat-value" id="gh-updated">--</span>
+            <span class="github-stat-label">LAST UPDATED</span>
           </div>
         </div>
-      </section>
-    </main>
+        <div class="grid-span-12 repo-list" id="gh-repo-list">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+      <div class="section-divider-line"></div>
+    </section>
 
-    <footer class="site-footer container">
-      © <span id="year"></span> Rabi Dahal · Built with intent, tested with curiosity.
-    </footer>
-  </body>
+    <!-- 08 — CONTACT / FOOTER SECTION -->
+    <section id="sec-08" class="section scroll-section">
+      <div class="section-container contact-layout">
+        <div class="grid-span-12">
+          <div class="section-num font-mono">08 / TERMINAL</div>
+          <h2 class="section-title display-shout text-split">LET'S TALK.</h2>
+        </div>
+
+        <!-- Socials and Contacts -->
+        <div class="grid-span-6 contact-links-block font-mono">
+          <div class="links-grid">
+            <a href="mailto:rrabi.dahal@gmail.com" class="contact-link hover-btn" data-label="rrabi.dahal@gmail.com">EMAIL</a>
+            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener" class="contact-link hover-btn" data-label="github.com/proobker">GITHUB</a>
+            <a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener" class="contact-link hover-btn" data-label="linkedin.com/in/rabi-dahal">LINKEDIN</a>
+          </div>
+        </div>
+
+        <!-- Interactive footer block -->
+        <div class="grid-span-6 footer-interactive-block">
+
+          <!-- Pointing Hand Container -->
+          <div class="hand-container-box">
+            <svg id="pointing-hand-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g id="hand-rotator">
+                <path class="hand-path" d="M30 65 L30 80 L70 80 L70 65 L60 65 L60 55 L50 55 L50 45 L40 45 L40 55 L30 55 Z" />
+                <path class="hand-path" d="M60 55 L90 55 L90 45 L60 45" />
+                <path class="hand-path" d="M40 55 L50 55" />
+                <path class="hand-path" d="M50 65 L60 65" />
+              </g>
+              <circle cx="50" cy="62" r="1.5" class="hand-dot" />
+            </svg>
+            <div id="hand-target-label" class="font-mono text-accent">[ POINTING IDLE ]</div>
+          </div>
+
+          <!-- Manual Accent Vibe Panel -->
+          <div class="room-sync-panel font-mono">
+            <div class="panel-header">ACCENT COLOR CONTROL</div>
+            <p class="panel-info">Pick a vibe to restyle the accent details of the whole system. Live CSS variable interpolation.</p>
+
+            <div class="vibe-presets-container">
+              <span>MANUAL VIBES:</span>
+              <div class="vibe-presets">
+                <button class="vibe-btn" data-color="#00E5FF" style="background-color: #00E5FF;" aria-label="Preset Cyan"></button>
+                <button class="vibe-btn" data-color="#FF5A36" style="background-color: #FF5A36;" aria-label="Preset Orange"></button>
+                <button class="vibe-btn" data-color="#ADFF2F" style="background-color: #ADFF2F;" aria-label="Preset Lime"></button>
+                <button class="vibe-btn" data-color="#FF007F" style="background-color: #FF007F;" aria-label="Preset Magenta"></button>
+                <button class="vibe-btn" data-color="#BD00FF" style="background-color: #BD00FF;" aria-label="Preset Purple"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signature vinyl graphics motif at bottom footer -->
+        <div class="grid-span-12 footer-vinyl-divider">
+          <div class="divider-grooves"></div>
+          <div class="divider-text font-mono">RABI DAHAL — EMBEDDED // IOT // AUTOMATION — KATHMANDU [08]</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Core Logics and WebGL Modules -->
+  <script type="module" src="webgl.js"></script>
+  <script type="module" src="script.js"></script>
+
+</body>
 </html>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#111"/>
+  <rect x="0" y="0" width="800" height="800" fill="url(#g)" opacity="0.5"/>
+  <defs>
+    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00E5FF"/>
+      <stop offset="1" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <circle cx="400" cy="400" r="260" fill="none" stroke="#F4F4F2" stroke-width="2" stroke-dasharray="6 10"/>
+  <circle cx="400" cy="400" r="180" fill="url(#core)" opacity="0.18"/>
+  <circle cx="400" cy="400" r="6" fill="#00E5FF"/>
+  <g stroke="#F4F4F2" stroke-width="3" fill="none">
+    <path d="M400 400 L400 140"/>
+    <path d="M400 400 L660 400"/>
+    <path d="M400 400 L220 620"/>
+  </g>
+  <g fill="#0A0A0A" stroke="#00E5FF" stroke-width="3">
+    <rect x="200" y="120" width="90" height="18"/>
+    <rect x="560" y="140" width="140" height="18"/>
+    <rect x="420" y="580" width="90" height="18"/>
+  </g>
+  <text x="500" y="360" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="900" letter-spacing="8" fill="#F4F4F2">QST</text>
+  <text x="500" y="400" font-family="monospace" font-size="14" letter-spacing="4" fill="#00E5FF">QUEST SYSTEM</text>
+</svg>
