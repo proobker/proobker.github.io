@@ -62,7 +62,7 @@ function positionDiscForViewport() {
 // Build the Disc Mesh — arc reactor image mapped onto the disc
 function createDisc() {
   const textureLoader = new THREE.TextureLoader();
-  const reactorTexture = textureLoader.load('assets/arc.jpg');
+  const reactorTexture = textureLoader.load('assets/arc.svg');
   reactorTexture.colorSpace = THREE.SRGBColorSpace;
 
   const discGeom = new THREE.CylinderGeometry(4.2, 4.2, 0.08, 64);
