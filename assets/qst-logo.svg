@@ -1,5 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="59 68 282 133" role="img" aria-label="qst">
-  <rect x="59" y="68" width="282" height="133" fill="#fbfbfb"/>
-  <path fill="#9658ed" fill-rule="evenodd" d="M111.458 88.025 C 69.323 91.084,50.871 142.291,81.288 171.753 C 92.152 182.276,100.624 185.117,121.810 185.341 L 134.115 185.471 134.115 174.918 L 134.115 164.366 122.982 164.257 C 108.873 164.118,106.194 163.541,100.082 159.329 C 77.503 143.769,88.606 109.165,116.146 109.264 C 129.405 109.312,139.321 116.831,143.024 129.644 L 143.601 131.641 143.682 165.951 C 143.731 186.900,143.857 200.260,144.005 200.260 C 144.408 200.260,149.836 196.906,160.026 190.361 C 162.318 188.889,164.514 187.497,164.907 187.267 L 165.622 186.849 165.621 160.938 C 165.620 129.653,165.494 127.695,163.004 120.391 C 155.644 98.799,135.685 86.267,111.458 88.025 Z"/>
-  <text x="178" y="187" fill="#301264" font-family="Arial, Helvetica, sans-serif" font-size="134" font-weight="900" font-style="italic">st</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" role="img" aria-label="QST">
+  <title>QST</title>
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00E5FF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="960" height="960" fill="#0A0C0F"/>
+
+  <circle cx="330" cy="400" r="430" fill="url(#glow)"/>
+
+  <g stroke="#15181D" stroke-width="1.5" opacity="0.55">
+    <path d="M0 120H960M0 240H960M0 360H960M0 480H960M0 600H960M0 720H960M0 840H960"/>
+    <path d="M120 0V960M240 0V960M360 0V960M480 0V960M600 0V960M720 0V960M840 0V960"/>
+  </g>
+
+  <g stroke="#00E5FF" stroke-width="8" fill="none">
+    <path d="M40 110V40H110"/>
+    <path d="M850 40H920V110"/>
+    <path d="M920 850V920H850"/>
+    <path d="M110 920H40V850"/>
+  </g>
+
+  <g stroke="#00E5FF" stroke-width="4" opacity="0.8">
+    <path d="M120 50V70M240 50V70M490 50V70"/>
+    <path d="M120 890V910M240 890V910M490 890V910"/>
+    <path d="M50 120H70M50 240H70M50 470H70"/>
+    <path d="M890 120H910M890 240H910M890 470H910"/>
+  </g>
+
+  <circle cx="330" cy="400" r="170" fill="#0A0C0F" stroke="#F4F4F2" stroke-width="92"/>
+  <path d="M408 532 Q496 556 476 610" fill="none" stroke="#F4F4F2" stroke-width="72" stroke-linecap="round"/>
+  <path d="M478 600 L520 620 L478 640 L436 620 Z" fill="#00E5FF" stroke="#F4F4F2" stroke-width="8" stroke-linejoin="round"/>
+
+  <g fill="#F4F4F2" font-family="'Archivo Black','Arial Black','Helvetica Neue','Segoe UI',Arial,sans-serif" font-weight="900">
+    <text x="560" y="306" font-size="148" letter-spacing="2">S</text>
+    <text x="560" y="514" font-size="170" letter-spacing="2">T</text>
+  </g>
+  <rect x="556" y="568" width="214" height="14" fill="#00E5FF"/>
+  <text x="560" y="646" font-family="Consolas, Menlo, monospace" font-size="25" letter-spacing="5" fill="#00E5FF" font-weight="bold">QUEST SYSTEM</text>
+  <text x="560" y="682" font-family="Consolas, Menlo, monospace" font-size="18" letter-spacing="3" fill="#5A6470">@PROOBKER // RPG GRIND</text>
 </svg>

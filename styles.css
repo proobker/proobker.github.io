@@ -638,7 +638,7 @@ body.noscript-ready .intro-overlay {
   width: 90%;
   height: 90%;
   background-color: #06070d;
-  background-image: url('assets/arc_reactor.gif');
+  background-image: url('assets/arc.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
