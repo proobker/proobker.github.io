@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T08:21:34.166Z",
+  "generatedAt": "2026-09-18T07:56:50.561Z",
   "arcs": [
     {
       "name": "qst",
@@ -9,7 +9,7 @@
       "stars": 1,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-08-01T10:38:43Z",
+      "updated_at": "2026-09-17T12:43:11Z",
       "url": "https://github.com/proobker/qst",
       "homepage": "https://qst-kappa.vercel.app",
       "art": "assets/qst-logo.svg",
@@ -71,7 +71,7 @@
       "stars": 1,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-08-01T10:38:43Z",
+      "updated_at": "2026-09-17T12:43:11Z",
       "url": "https://github.com/proobker/qst",
       "homepage": "https://qst-kappa.vercel.app",
       "art": "assets/qst-logo.svg",
