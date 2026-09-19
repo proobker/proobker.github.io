@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T07:56:50.561Z",
+  "generatedAt": "2026-09-19T07:47:13.774Z",
   "arcs": [
     {
       "name": "qst",
@@ -9,7 +9,7 @@
       "stars": 1,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-17T12:43:11Z",
+      "updated_at": "2026-09-19T07:02:57Z",
       "url": "https://github.com/proobker/qst",
       "homepage": "https://qst-kappa.vercel.app",
       "art": "assets/qst-logo.svg",
@@ -71,7 +71,7 @@
       "stars": 1,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-17T12:43:11Z",
+      "updated_at": "2026-09-19T07:02:57Z",
       "url": "https://github.com/proobker/qst",
       "homepage": "https://qst-kappa.vercel.app",
       "art": "assets/qst-logo.svg",
@@ -146,9 +146,9 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-05T09:24:33Z",
+      "updated_at": "2026-09-19T05:25:38Z",
       "url": "https://github.com/proobker/rubiks-solver",
-      "homepage": null,
+      "homepage": "https://rubiks.rabidahal.com.np",
       "art": "assets/project-rubiks.svg",
       "tags": "TYPESCRIPT // 0★ // 0 FORKS // 2026",
       "tier": "secondary"
