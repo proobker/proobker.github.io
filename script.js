@@ -496,8 +496,8 @@ function updateHandRotation() {
 // ==========================================
 const vibeBtns = document.querySelectorAll('.vibe-btn');
 
-let currentRGB = { r: 0, g: 229, b: 255 };
-let targetRGB = { r: 0, g: 229, b: 255 };
+let currentRGB = { r: 255, g: 77, b: 0 };
+let targetRGB = { r: 255, g: 77, b: 0 };
 
 vibeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
