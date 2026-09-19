@@ -1,5 +1,5 @@
 """
-Generate OG preview card (1200x630) for rabidahal.me
+Generate OG preview card (1200x630) for rabidahal.com.np
 Minimal editorial layout — no disc graphic.
 Fonts: Arial Bold (display), Consolas Bold (mono).
 """

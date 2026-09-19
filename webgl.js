@@ -54,7 +54,7 @@ function positionDiscForViewport() {
     discGroup.position.set(0, 0, 0);
     discGroup.scale.set(0.8, 0.8, 0.8);
   } else {
-    discGroup.position.set(3.2, 0, 0);
+    discGroup.position.set(2.2, 0, 0);
     discGroup.scale.set(1.0, 1.0, 1.0);
   }
 }

@@ -164,7 +164,7 @@ body.noscript-ready .intro-overlay {
   grid-template-columns: repeat(12, 1fr);
   column-gap: 20px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1;
   padding: 0 20px;
 }
 
@@ -386,6 +386,16 @@ body.noscript-ready .intro-overlay {
   grid-column: span 3;
 }
 
+/* Allow grid children to shrink inside the 12-col layout */
+.grid-span-12,
+.grid-span-8,
+.grid-span-6,
+.grid-span-4,
+.grid-span-3 {
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* Oversized background section watermarks (reuse existing indices) */
 .section::before {
   content: '';
@@ -556,23 +566,13 @@ body.noscript-ready .intro-overlay {
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 12vw, 11rem);
-  margin-left: -0.05em;
+  font-size: clamp(3.5rem, 9vw, 9.5rem);
+  margin-left: 0;
   color: var(--fg);
 }
 
 .hero-text-block {
   position: relative;
-}
-
-.hero-text-block::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 8%;
-  width: 12px;
-  height: 60%;
-  background-color: var(--accent);
 }
 
 .hero-subtitle {
@@ -584,6 +584,7 @@ body.noscript-ready .intro-overlay {
   border: 2px solid var(--fg);
   padding: 14px 20px;
   width: fit-content;
+  max-width: 100%;
   position: relative;
   left: -8px;
   box-shadow: 10px 10px 0 var(--accent);
@@ -950,8 +951,24 @@ body.noscript-ready .intro-overlay {
 
 .project-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   text-align: left;
+}
+
+.project-table th:first-child,
+.project-table td:first-child {
+  width: 60px;
+}
+
+.project-table th:nth-child(3),
+.project-table td:nth-child(3) {
+  width: 130px;
+}
+
+.project-table th:nth-child(4),
+.project-table td:nth-child(4) {
+  width: 80px;
 }
 
 .table-header-row th {
@@ -983,6 +1000,7 @@ body.noscript-ready .intro-overlay {
   position: relative;
   z-index: 2;
   transition: color 0.3s;
+  overflow-wrap: break-word;
 }
 
 .project-row td:first-child {
@@ -1006,6 +1024,7 @@ body.noscript-ready .intro-overlay {
   letter-spacing: -0.04em;
   line-height: 0.9;
   font-weight: 700;
+  overflow-wrap: break-word;
 }
 
 .project-row:hover td {
@@ -1270,6 +1289,7 @@ body.noscript-ready .intro-overlay {
   color: var(--fg);
   flex: 1 1 auto;
   transition: color 0.3s;
+  overflow-wrap: break-word;
 }
 
 .repo-item:hover .repo-title {
@@ -1687,7 +1707,7 @@ body.noscript-ready .intro-overlay {
     font-size: 10px;
   }
 
-  .hero-title { font-size: clamp(4rem, 12vw, 10rem); }
+  .hero-title { font-size: clamp(3.5rem, 9vw, 8.5rem); }
 
   .grid-overlay { display: grid; }
 
@@ -1778,10 +1798,6 @@ body.noscript-ready .intro-overlay {
   .hero-subtitle {
     box-shadow: 6px 6px 0 var(--accent);
     left: 0;
-  }
-
-  .hero-text-block::after {
-    display: none;
   }
 
   .gallery-subtitle {
