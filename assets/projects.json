@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T08:33:00.072Z",
+  "generatedAt": "2026-09-22T08:13:12.945Z",
   "arcs": [
     {
       "name": "qst",
@@ -54,7 +54,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-20T12:09:55Z",
+      "updated_at": "2026-09-21T12:58:09Z",
       "url": "https://github.com/proobker/flight-sim",
       "homepage": null,
       "art": "assets/project-flight-sim.svg",
@@ -116,7 +116,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-20T12:09:55Z",
+      "updated_at": "2026-09-21T12:58:09Z",
       "url": "https://github.com/proobker/flight-sim",
       "homepage": null,
       "art": "assets/project-flight-sim.svg",
