@@ -1621,6 +1621,12 @@ body.noscript-ready .intro-overlay {
   padding-bottom: 4px;
 }
 
+.bubble-header::before {
+  content: '>';
+  color: var(--accent);
+  margin-right: 4px;
+}
+
 #vektor-text {
   font-weight: 500;
 }
