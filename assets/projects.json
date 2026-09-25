@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:06:35.878Z",
+  "generatedAt": "2026-09-25T08:30:22.096Z",
   "arcs": [
     {
       "name": "qst",
@@ -39,7 +39,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-13T05:53:06Z",
+      "updated_at": "2026-09-24T09:15:40Z",
       "url": "https://github.com/proobker/terrasim",
       "homepage": null,
       "art": "assets/project-terrasim.svg",
@@ -101,7 +101,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-09-13T05:53:06Z",
+      "updated_at": "2026-09-24T09:15:40Z",
       "url": "https://github.com/proobker/terrasim",
       "homepage": null,
       "art": "assets/project-terrasim.svg",
