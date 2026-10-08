@@ -547,6 +547,12 @@ if (document.readyState === 'loading') {
   init();
 }
 
+// Block double/triple-click word & line selection (spam-clicking the tank kept
+// highlighting text). Click-and-drag selection still works for copying.
+document.addEventListener('mousedown', (e) => {
+  if (e.detail > 1) e.preventDefault();
+});
+
 // --- MOBILE MENU LOGIC ---
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const sidebarNav = document.getElementById('sidebar-nav');

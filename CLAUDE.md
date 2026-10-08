@@ -24,6 +24,7 @@ This is a static personal portfolio website built with HTML5, CSS3, Vanilla Java
   - Responsive design via viewport units, `clamp()` and grid-span media queries (mobile → 12-col grid at 768px, left-rail nav at 1024px).
   - Component styling: left nav, hero blocks, stat cards, arc-reactor gallery, project table, timeline, GitHub stats, contact/footer, buttons, custom cursor, mobile menu, reduced-motion overrides.
 - `webgl.js`: Three.js module that renders the spinning arc-reactor disc as a fixed background layer (`#webgl-canvas`, `z-index: -2`). Tilt follows the mouse; rotation speed reacts to scroll velocity. Position/scale adjust per viewport.
+- `tank.js`: Decorative pointer tank on `#tank-canvas` (`z-index: 9000`, `pointer-events: none`). Wanders around the pointer, turret tracks it, and clicks fire a shell that explodes and shakes the hit element (`.tank-hit`). Toggle via `#tank-btn` (saved in `localStorage`), disabled on touch devices.
 - `script.js`: Handles interactivity:
   - Web Audio blips + mute toggle.
   - Custom cursor tracking + hover growth (`#custom-cursor`, hidden on coarse pointers).

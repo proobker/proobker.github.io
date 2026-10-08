@@ -35,7 +35,7 @@
     <style>
       .scroll-section { opacity: 1 !important; transform: none !important; }
       .left-index-nav { display: block !important; }
-      #webgl-canvas, #custom-cursor, #floating-preview, .audio-control-panel { display: none !important; }
+      #webgl-canvas, #tank-canvas, #custom-cursor, #floating-preview, .audio-control-panel { display: none !important; }
     </style>
   </noscript>
 
@@ -80,7 +80,13 @@
     <button id="mute-btn" aria-label="Toggle interface sounds" aria-pressed="false">
       <span class="mono-label">Sound</span> <span id="sound-status" class="mono-value">Off</span>
     </button>
+    <button id="tank-btn" aria-label="Toggle pointer tank" aria-pressed="true">
+      <span class="mono-label">Tank</span> <span id="tank-status" class="mono-value active-status">On</span>
+    </button>
   </div>
+
+  <!-- Pointer Tank overlay (decorative, never intercepts input) -->
+  <canvas id="tank-canvas" aria-hidden="true"></canvas>
 
   <!-- Mobile Hamburger Toggle (Minimum 44x44px touch target) -->
   <button id="mobile-menu-btn" aria-label="Toggle menu" aria-controls="sidebar-nav" aria-expanded="false">
@@ -372,6 +378,7 @@
   <!-- App Core Logics and WebGL Modules -->
   <script type="module" src="webgl.js"></script>
   <script type="module" src="script.js"></script>
+  <script type="module" src="tank.js"></script>
 
 </body>
 </html>

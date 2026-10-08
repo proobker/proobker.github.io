@@ -233,9 +233,12 @@ body.past-hero #webgl-canvas {
   top: 24px;
   right: 24px;
   z-index: 100;
+  display: flex;
+  gap: 8px;
 }
 
-#mute-btn {
+#mute-btn,
+#tank-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -250,13 +253,41 @@ body.past-hero #webgl-canvas {
   transition: border-color 0.25s, color 0.25s;
 }
 
-#mute-btn:hover {
+#mute-btn:hover,
+#tank-btn:hover {
   border-color: var(--fg);
   color: var(--fg);
 }
 
-#sound-status.active-status {
+#sound-status.active-status,
+#tank-status.active-status {
   color: var(--accent);
+}
+
+#tank-btn[hidden] {
+  display: none;
+}
+
+/* Pointer tank overlay: above content, below the cursor, never blocks input */
+#tank-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 9000;
+  pointer-events: none;
+}
+
+.tank-hit {
+  animation: tank-hit 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes tank-hit {
+  10%, 90% { transform: translate(-1px, 0); }
+  20%, 80% { transform: translate(3px, -1px); }
+  30%, 50%, 70% { transform: translate(-5px, 1px); }
+  40%, 60% { transform: translate(5px, -1px); }
 }
 
 .mono-label,
@@ -836,7 +867,7 @@ body.past-hero #webgl-canvas {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
   background-color: var(--panel);
   overflow: hidden;
   border: 1px solid var(--hairline);
@@ -886,17 +917,16 @@ body.past-hero #webgl-canvas {
   object-fit: cover;
   position: relative;
   z-index: 3;
-  filter: grayscale(1) contrast(1.2);
-  transition: transform 0.6s var(--ease-out), filter 0.6s ease;
+  filter: grayscale(1) contrast(2) brightness(1.05);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .reactor-core {
   position: absolute;
-  top: 50%;
-  right: 8%;
-  width: 70%;
-  aspect-ratio: 1/1;
-  transform: translateY(-50%);
+  top: 5%;
+  right: 5%;
+  width: 90%;
+  height: 90%;
   background-color: #111111;
   background-image: url('assets/arc.svg');
   background-size: cover;
@@ -907,17 +937,23 @@ body.past-hero #webgl-canvas {
   box-shadow:
     inset 0 0 60px rgba(255, 77, 0, 0.16),
     inset 0 0 12px rgba(255, 77, 0, 0.3),
-    0 0 34px rgba(255, 77, 0, 0.12);
-  transition: right 0.6s var(--ease-out);
+    0 0 34px rgba(255, 77, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .arc-reactor:hover .reactor-casing {
-  transform: translateX(-18%);
-  filter: grayscale(0.2) contrast(1.05);
+  transform: translateX(-20%);
 }
 
 .arc-reactor:hover .reactor-core {
-  right: -20%;
+  right: -25%;
+}
+
+.arc-reactor:active .reactor-core {
+  box-shadow:
+    inset 0 0 80px rgba(255, 77, 0, 0.3),
+    inset 0 0 16px rgba(255, 77, 0, 0.5),
+    0 0 44px rgba(255, 77, 0, 0.2);
 }
 
 .arc-meta {
@@ -1309,12 +1345,14 @@ body.past-hero #webgl-canvas {
 
 .contact-email {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  gap: 4px 16px;
   width: fit-content;
   max-width: 100%;
+  min-width: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 4vw, 3rem);
+  font-size: clamp(1.25rem, 3.6vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--fg);
@@ -1340,11 +1378,12 @@ body.past-hero #webgl-canvas {
 
 .links-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   border-top: 1px solid var(--hairline);
 }
 
 .contact-link {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -1581,7 +1620,7 @@ body.past-hero #webgl-canvas {
   }
 
   .arc-reactor:hover .reactor-core {
-    right: 8%;
+    right: 5%;
   }
 
   .audio-control-panel {
@@ -1606,12 +1645,6 @@ body.past-hero #webgl-canvas {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 
   .scroll-section .section-container {

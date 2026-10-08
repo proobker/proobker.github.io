@@ -27,6 +27,7 @@ No build step, no bundler, no transpilation.
 ## Features
 
 - **WebGL arc reactor** — spinning disc in the hero, tilt follows the mouse, spin accelerates with scroll
+- **Pointer tank** — a little tank that follows the cursor and shells whatever you click (toggle top-right)
 - **Custom reticle cursor** that enlarges over interactive elements (hidden on touch devices)
 - **Magnetic buttons** and hover/click Web Audio blips (mute toggle, top-right)
 - **Count-up stat counters** triggered on scroll into section `03`

@@ -21,12 +21,10 @@
 
   <style>
     @keyframes arc-spin { to { transform: rotate(360deg); } }
-    .rotor   { transform-origin: 512px 512px; animation: arc-spin 5s linear infinite; }
-    .rotor2  { transform-origin: 512px 512px; animation: arc-spin 8s linear infinite reverse; }
-    .rotor3  { transform-origin: 512px 512px; animation: arc-spin 3.5s linear infinite reverse; }
-    @media (prefers-reduced-motion: reduce) {
-      .rotor, .rotor2, .rotor3 { animation-duration: 45s; }
-    }
+    .rotor   { transform-origin: 512px 512px; transform-box: view-box; animation: arc-spin 9s linear infinite; }
+    .rotor3  { transform-origin: 512px 512px; transform-box: view-box; animation: arc-spin 40s linear infinite; }
+    @keyframes core-pulse { 50% { opacity: 0.75; } }
+    .pulse   { animation: core-pulse 3s ease-in-out infinite; }
   </style>
 
   <rect width="1024" height="1024" fill="url(#bg)"/>
@@ -48,6 +46,21 @@
   <circle cx="512" cy="512" r="366" fill="none" stroke="#0A0C10" stroke-width="3"/>
 
   <g class="rotor">
+    <use href="#wedge2" transform="rotate(12.857 512 512)"/>
+    <use href="#wedge2" transform="rotate(38.571 512 512)"/>
+    <use href="#wedge2" transform="rotate(64.286 512 512)"/>
+    <use href="#wedge2" transform="rotate(90 512 512)"/>
+    <use href="#wedge2" transform="rotate(115.714 512 512)"/>
+    <use href="#wedge2" transform="rotate(141.429 512 512)"/>
+    <use href="#wedge2" transform="rotate(167.143 512 512)"/>
+    <use href="#wedge2" transform="rotate(192.857 512 512)"/>
+    <use href="#wedge2" transform="rotate(218.571 512 512)"/>
+    <use href="#wedge2" transform="rotate(244.286 512 512)"/>
+    <use href="#wedge2" transform="rotate(270 512 512)"/>
+    <use href="#wedge2" transform="rotate(295.714 512 512)"/>
+    <use href="#wedge2" transform="rotate(321.429 512 512)"/>
+    <use href="#wedge2" transform="rotate(347.143 512 512)"/>
+
     <use href="#wedge" transform="rotate(0 512 512)"/>
     <use href="#wedge" transform="rotate(25.714 512 512)"/>
     <use href="#wedge" transform="rotate(51.429 512 512)"/>
@@ -64,27 +77,10 @@
     <use href="#wedge" transform="rotate(334.286 512 512)"/>
   </g>
 
-  <g class="rotor2">
-    <use href="#wedge2" transform="rotate(12.857 512 512)"/>
-    <use href="#wedge2" transform="rotate(38.571 512 512)"/>
-    <use href="#wedge2" transform="rotate(64.286 512 512)"/>
-    <use href="#wedge2" transform="rotate(90 512 512)"/>
-    <use href="#wedge2" transform="rotate(115.714 512 512)"/>
-    <use href="#wedge2" transform="rotate(141.429 512 512)"/>
-    <use href="#wedge2" transform="rotate(167.143 512 512)"/>
-    <use href="#wedge2" transform="rotate(192.857 512 512)"/>
-    <use href="#wedge2" transform="rotate(218.571 512 512)"/>
-    <use href="#wedge2" transform="rotate(244.286 512 512)"/>
-    <use href="#wedge2" transform="rotate(270 512 512)"/>
-    <use href="#wedge2" transform="rotate(295.714 512 512)"/>
-    <use href="#wedge2" transform="rotate(321.429 512 512)"/>
-    <use href="#wedge2" transform="rotate(347.143 512 512)"/>
-  </g>
-
   <circle class="rotor3" cx="512" cy="512" r="398" fill="none" stroke="#00E5FF" stroke-width="2" stroke-dasharray="2 17" opacity="0.55"/>
 
   <circle cx="512" cy="512" r="180" fill="none" stroke="#0A0C10" stroke-width="3"/>
-  <circle cx="512" cy="512" r="150" fill="url(#core)" opacity="0.95"/>
+  <circle class="pulse" cx="512" cy="512" r="150" fill="url(#core)" opacity="0.95"/>
   <circle cx="512" cy="512" r="58" fill="#EDFDFF"/>
   <circle cx="512" cy="512" r="86" fill="none" stroke="#00E5FF" stroke-width="3" opacity="0.8"/>
   <circle cx="512" cy="512" r="120" fill="none" stroke="#86F7FF" stroke-width="1.5" stroke-dasharray="12 16" opacity="0.45"/>
