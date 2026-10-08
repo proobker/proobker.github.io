@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T09:45:19.298Z",
+  "generatedAt": "2026-10-08T15:37:19.902Z",
   "arcs": [
     {
       "name": "qst",
@@ -39,7 +39,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-10-07T08:52:19Z",
+      "updated_at": "2026-10-07T12:39:22Z",
       "url": "https://github.com/proobker/terrasim",
       "homepage": null,
       "art": "assets/project-terrasim.svg",
@@ -101,7 +101,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-10-07T08:52:19Z",
+      "updated_at": "2026-10-07T12:39:22Z",
       "url": "https://github.com/proobker/terrasim",
       "homepage": null,
       "art": "assets/project-terrasim.svg",
@@ -122,6 +122,21 @@
       "art": "assets/project-flight-sim.svg",
       "tags": "PYTHON // 0★ // 0 FORKS // 2026",
       "tier": "primary"
+    },
+    {
+      "name": "cracked",
+      "title": "CRACKED",
+      "description": "A 3d FPS game",
+      "language": "GDScript",
+      "stars": 0,
+      "forks": 0,
+      "year": 2026,
+      "updated_at": "2026-10-07T16:17:42Z",
+      "url": "https://github.com/proobker/cracked",
+      "homepage": null,
+      "art": "assets/project-cracked.svg",
+      "tags": "GDSCRIPT // 0★ // 0 FORKS // 2026",
+      "tier": "secondary"
     },
     {
       "name": "rakshya_app",
@@ -150,21 +165,6 @@
       "url": "https://github.com/proobker/rubiks-solver",
       "homepage": "https://rubiks.rabidahal.com.np",
       "art": "assets/project-rubiks.svg",
-      "tags": "TYPESCRIPT // 0★ // 0 FORKS // 2026",
-      "tier": "secondary"
-    },
-    {
-      "name": "bnks",
-      "title": "BNKS",
-      "description": "bnks remake cuz last failed",
-      "language": "TypeScript",
-      "stars": 0,
-      "forks": 0,
-      "year": 2026,
-      "updated_at": "2026-08-23T04:39:59Z",
-      "url": "https://github.com/proobker/bnks",
-      "homepage": "https://bnks-nu.vercel.app",
-      "art": "assets/project-bnks.svg",
       "tags": "TYPESCRIPT // 0★ // 0 FORKS // 2026",
       "tier": "secondary"
     },

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#111"/>
+  <rect x="0" y="0" width="800" height="800" fill="url(#g)" opacity="0.5"/>
+  <defs>
+    <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="#F4F4F2" stroke-width="2" opacity="0.7">
+    <path d="M140 640 L320 460 L480 460 L660 640"/>
+    <path d="M320 460 L320 200 L480 200 L480 460"/>
+    <path d="M140 160 L320 200 M660 160 L480 200"/>
+  </g>
+  <g fill="none" stroke="#FF4D00" stroke-width="3">
+    <circle cx="400" cy="330" r="110"/>
+    <line x1="400" y1="190" x2="400" y2="290"/>
+    <line x1="400" y1="370" x2="400" y2="470"/>
+    <line x1="260" y1="330" x2="360" y2="330"/>
+    <line x1="440" y1="330" x2="540" y2="330"/>
+  </g>
+  <circle cx="400" cy="330" r="6" fill="#FF4D00"/>
+  <text x="520" y="660" font-family="monospace" font-size="16" letter-spacing="6" fill="#F4F4F2">CRACKED</text>
+  <text x="520" y="690" font-family="monospace" font-size="11" letter-spacing="4" fill="#FF4D00">3D FPS // GODOT</text>
+</svg>

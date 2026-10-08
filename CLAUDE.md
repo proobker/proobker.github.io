@@ -17,22 +17,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a static personal portfolio website built with HTML5, CSS3, Vanilla JavaScript, and a Three.js WebGL background layer. It features an "industrial brutalist" aesthetic with smooth scroll-driven animations, reveal effects, and dynamic GitHub integration.
 
 ### File Structure
-- `index.html`: Semantic HTML5 structure with clearly defined sections (intro, hero, bio, achievements, gallery/arc reactors, projects, timeline, GitHub, contact). Includes the Three.js import map, feature overlays (cursor, VEKTOR, floating previews, grid), and a noscript fallback.
+- `index.html`: Semantic HTML5 structure with clearly defined sections (01 hero, 02 about, 03 highlights, 04 featured work/arc cards, 05 project index, 06 journey, 07 GitHub, 08 contact + footer). Includes the Three.js import map, feature overlays (cursor, floating previews, grid), and a noscript fallback.
 - `styles.css`: Contains the full design system, including:
-  - CSS custom properties in `:root` (`--bg`, `--fg`, `--panel`, `--hairline`, `--muted`, `--faint`, `--ink`, `--soft`, `--overlay`, `--accent`, `--accent-dark`, spacing/font tokens, `--stripes-subtle`, `--hazard`).
-  - "Industrial brutalist" language: hard rectangles (global `border-radius: 0`), hairline 12-column grid overlay (background layer, `z-index: 1`), diagonal/hazard stripes, oversized display typography, and registration corner marks.
+  - CSS custom properties in `:root` (`--bg`, `--fg`, `--panel`, `--hairline`, `--muted`, `--faint`, `--ink`, `--soft`, `--overlay`, `--accent`, `--accent-dark`, spacing/font tokens, `--hazard`).
+  - "Industrial brutalist" language: hard rectangles (global `border-radius: 0`), hairline 12-column grid overlay (background layer, `z-index: 1`), a hazard-stripe footer strip, oversized display typography, and registration corner marks.
   - Responsive design via viewport units, `clamp()` and grid-span media queries (mobile → 12-col grid at 768px, left-rail nav at 1024px).
-  - Component styling: left nav, intro overlay, hero blocks, stat cards, arc-reactor gallery, project table, timeline, GitHub stats, contact/footer, VEKTOR bubble, custom cursor, mobile menu.
+  - Component styling: left nav, hero blocks, stat cards, arc-reactor gallery, project table, timeline, GitHub stats, contact/footer, buttons, custom cursor, mobile menu, reduced-motion overrides.
 - `webgl.js`: Three.js module that renders the spinning arc-reactor disc as a fixed background layer (`#webgl-canvas`, `z-index: -2`). Tilt follows the mouse; rotation speed reacts to scroll velocity. Position/scale adjust per viewport.
 - `script.js`: Handles interactivity:
   - Web Audio blips + mute toggle.
   - Custom cursor tracking + hover growth (`#custom-cursor`, hidden on coarse pointers).
   - Typography split (`text-split` → per-letter spans) and magnetic buttons (`.hover-btn`).
-  - Intro overlay + loader sequence.
-  - Scroll observers: section reveal, active nav highlighting, stat count-up (section 03), VEKTOR narration triggers, timeline progress fill (section 06).
+  - Scroll observers: section reveal, active nav highlighting, stat count-up (section 03), WebGL dimming past the hero, timeline progress fill (section 06).
   - Floating project previews (section 05).
-  - Pointing-hand rotator (footer).
-  - Accent "vibe" control — interpolates `--accent` live from preset buttons.
   - Projects + GitHub integration: loads `assets/projects.json` (fallback embedded data), renders arcs/table/repo list, fetches GitHub user stats.
 - `assets/`: Static assets:
   - `Rabi-Dahal-Profile.png`, project artwork (`project-*.svg`, `qst-logo.svg`, `arc.svg`).

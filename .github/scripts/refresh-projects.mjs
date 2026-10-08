@@ -21,9 +21,9 @@ const MANIFEST = [
   { name: 'rakshyaa',    tier: 'primary',   art: 'assets/project-rakshyaa.svg' },
   { name: 'terrasim',    tier: 'primary',   art: 'assets/project-terrasim.svg' },
   { name: 'flight-sim',  tier: 'primary',   art: 'assets/project-flight-sim.svg' },
+  { name: 'cracked',     tier: 'secondary', art: 'assets/project-cracked.svg' },
   { name: 'rakshya_app', tier: 'secondary', art: 'assets/project-rakshya.svg' },
   { name: 'rubiks-solver', tier: 'secondary', art: 'assets/project-rubiks.svg' },
-  { name: 'bnks',        tier: 'secondary', art: 'assets/project-bnks.svg' },
   { name: 'A_Star_Algoritihm', tier: 'secondary', art: 'assets/project-pathfinder.svg', title: 'A* PATHFINDER' }
 ];
 

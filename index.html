@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RABI DAHAL — EMBEDDED SYSTEMS, IOT & AUTOMATION</title>
-  <meta name="description" content="Scroll-driven portfolio of Rabi Dahal, embedded systems and IoT engineer. Brutalist layout, WebGL reactor disc, audio synth, and live GitHub integration.">
+  <title>Rabi Dahal — Software Developer & Builder</title>
+  <meta name="description" content="Rabi Dahal (proobker) is a software developer in Bhaktapur, Nepal, building full-stack web apps, Android apps, simulations and games with TypeScript, Python, Kotlin and C. Projects, journey and contact.">
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://proobker.github.io/" />
-  <meta property="og:title" content="Rabi Dahal | Embedded Systems & IoT" />
-  <meta property="og:description" content="I wire sensors, write code, and chase weird ideas until they work." />
+  <meta property="og:title" content="Rabi Dahal | Software Developer & Builder" />
+  <meta property="og:description" content="Developer in Bhaktapur, Nepal — shipping web apps, Android apps, simulations and games." />
   <meta property="og:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rabi Dahal | Embedded Systems & IoT" />
-  <meta name="twitter:description" content="I wire sensors, write code, and chase weird ideas until they work." />
+  <meta name="twitter:title" content="Rabi Dahal | Software Developer & Builder" />
+  <meta name="twitter:description" content="Developer in Bhaktapur, Nepal — shipping web apps, Android apps, simulations and games." />
   <meta name="twitter:image" content="https://proobker.github.io/assets/og-preview-card.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -27,17 +27,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 
   <noscript>
     <style>
-      .scroll-section, .intro-overlay { opacity: 1 !important; transform: none !important; }
-      .intro-overlay { display: none !important; }
+      .scroll-section { opacity: 1 !important; transform: none !important; }
       .left-index-nav { display: block !important; }
-      #webgl-canvas, #custom-cursor, #vektor-container, #floating-preview { display: none !important; }
-      .vektor-hidden { display: none !important; }
+      #webgl-canvas, #custom-cursor, #floating-preview, .audio-control-panel { display: none !important; }
     </style>
   </noscript>
 
@@ -53,7 +51,7 @@
 <body>
 
   <!-- Skip to content (keyboard accessibility) -->
-  <a href="#scroll-wrapper" class="skip-link">SKIP TO CONTENT</a>
+  <a href="#scroll-wrapper" class="skip-link">Skip to content</a>
 
   <!-- WebGL Layer Canvas -->
   <canvas id="webgl-canvas" aria-hidden="true"></canvas>
@@ -74,350 +72,298 @@
     <div class="grid-col"></div>
   </div>
 
-  <!-- Custom Blend Cursor -->
+  <!-- Custom Cursor -->
   <div id="custom-cursor" aria-hidden="true"></div>
 
-  <!-- Audio Context Mute Control (Top Right) -->
+  <!-- Sound Toggle (Top Right) -->
   <div class="audio-control-panel">
-    <button id="mute-btn" class="hover-btn" aria-label="Toggle Sound" aria-pressed="false">
-      <span class="mono-label">RD//LAB:</span> <span id="sound-status" class="mono-value">MUTED</span>
+    <button id="mute-btn" aria-label="Toggle interface sounds" aria-pressed="false">
+      <span class="mono-label">Sound</span> <span id="sound-status" class="mono-value">Off</span>
     </button>
   </div>
 
   <!-- Mobile Hamburger Toggle (Minimum 44x44px touch target) -->
-  <button id="mobile-menu-btn" class="hover-btn" aria-label="Toggle Menu" aria-controls="sidebar-nav" aria-expanded="false">
+  <button id="mobile-menu-btn" aria-label="Toggle menu" aria-controls="sidebar-nav" aria-expanded="false">
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
     <span class="hamburger-line"></span>
   </button>
 
-  <!-- Fixed Left Index Navigation (00-08) -->
-  <nav id="sidebar-nav" class="left-index-nav">
-    <div class="nav-header">RD//LAB</div>
+  <!-- Fixed Left Index Navigation (01-08) -->
+  <nav id="sidebar-nav" class="left-index-nav" aria-label="Sections">
+    <a href="#sec-01" class="nav-header">RD<span class="text-accent">.</span></a>
     <div class="nav-links">
-      <a href="#sec-00" class="nav-item active" data-sec="00"><span class="mono-num">00</span><span class="nav-hover-text">INTRO</span></a>
-      <a href="#sec-01" class="nav-item" data-sec="01"><span class="mono-num">01</span><span class="nav-hover-text">HERO</span></a>
-      <a href="#sec-02" class="nav-item" data-sec="02"><span class="mono-num">02</span><span class="nav-hover-text">BIO</span></a>
-      <a href="#sec-03" class="nav-item" data-sec="03"><span class="mono-num">03</span><span class="nav-hover-text">STATS</span></a>
-      <a href="#sec-04" class="nav-item" data-sec="04"><span class="mono-num">04</span><span class="nav-hover-text">WORK</span></a>
-      <a href="#sec-05" class="nav-item" data-sec="05"><span class="mono-num">05</span><span class="nav-hover-text">PROJECTS</span></a>
-      <a href="#sec-06" class="nav-item" data-sec="06"><span class="mono-num">06</span><span class="nav-hover-text">TIMELINE</span></a>
-      <a href="#sec-07" class="nav-item" data-sec="07"><span class="mono-num">07</span><span class="nav-hover-text">GITHUB</span></a>
-      <a href="#sec-08" class="nav-item" data-sec="08"><span class="mono-num">08</span><span class="nav-hover-text">CONTACT</span></a>
+      <a href="#sec-01" class="nav-item active" data-sec="01"><span class="mono-num">01</span><span class="nav-hover-text">Home</span></a>
+      <a href="#sec-02" class="nav-item" data-sec="02"><span class="mono-num">02</span><span class="nav-hover-text">About</span></a>
+      <a href="#sec-03" class="nav-item" data-sec="03"><span class="mono-num">03</span><span class="nav-hover-text">Highlights</span></a>
+      <a href="#sec-04" class="nav-item" data-sec="04"><span class="mono-num">04</span><span class="nav-hover-text">Featured</span></a>
+      <a href="#sec-05" class="nav-item" data-sec="05"><span class="mono-num">05</span><span class="nav-hover-text">Projects</span></a>
+      <a href="#sec-06" class="nav-item" data-sec="06"><span class="mono-num">06</span><span class="nav-hover-text">Journey</span></a>
+      <a href="#sec-07" class="nav-item" data-sec="07"><span class="mono-num">07</span><span class="nav-hover-text">GitHub</span></a>
+      <a href="#sec-08" class="nav-item" data-sec="08"><span class="mono-num">08</span><span class="nav-hover-text">Contact</span></a>
     </div>
-    <div class="nav-footer">2026©</div>
+    <div class="nav-footer">© 2026</div>
   </nav>
-
-  <!-- VROSKI Guide Character Overlay -->
-  <div id="vektor-container" class="vektor-hidden">
-    <svg id="vektor-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path class="vektor-path" d="M32 42 A18 18 0 1 0 68 42 A18 18 0 1 0 32 42 Z" />
-      <path class="vektor-path" d="M36 33 Q42 26 50 29 Q58 25 64 32" />
-      <path class="vektor-path" d="M42 27 Q48 21 56 26" />
-      <path class="vektor-path" d="M40 40 L46 40" />
-      <path class="vektor-path" d="M54 40 L60 40" />
-      <path class="vektor-path" d="M44 51 Q50 55 56 51" />
-      <path class="vektor-path" d="M42 68 L42 96 L58 96 L58 68" />
-      <path class="vektor-path" d="M50 68 L50 96" />
-      <path class="vektor-path" d="M46 88 L54 88" />
-      <path class="vektor-path" d="M58 72 Q82 70 82 54" />
-      <path class="vektor-path" d="M78 50 L84 52" />
-      <path class="vektor-path" d="M82 57 L87 61" />
-      <path class="vektor-path" d="M42 74 Q28 82 27 94" />
-      <path class="vektor-path" d="M44 96 L39 114" />
-      <path class="vektor-path" d="M56 96 L61 114" />
-      <path class="vektor-path" d="M35 114 L43 114" />
-      <path class="vektor-path" d="M57 114 L65 114" />
-    </svg>
-    <div id="vektor-bubble">
-      <div class="bubble-header font-mono">VROSKI // LOG</div>
-      <div id="vektor-text" class="font-mono">VROSKI: SPAWNING — GIVE ME A SECOND.</div>
-    </div>
-  </div>
 
   <!-- Floating Project Preview (Section 05) -->
   <div id="floating-preview" aria-hidden="true">
-    <img id="preview-img" src="" alt="Project Preview">
+    <img id="preview-img" src="" alt="">
   </div>
 
   <!-- Scroll Container -->
   <main id="scroll-wrapper">
 
-    <!-- 00 — INTRO SEQUENCE -->
-    <section id="sec-00" class="section scroll-section full-screen-section">
-      <div class="intro-overlay">
-        <div class="intro-content">
-          <h1 class="intro-title display-shout text-split" id="intro-logo">RABI DAHAL.</h1>
-          <div class="intro-loader-container">
-            <div class="intro-loader-bar" id="intro-bar"></div>
-          </div>
-          <div class="intro-meta font-mono">SYSTEM READY — INTERACT TO START</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 01 — HERO SECTION -->
-    <section id="sec-01" class="section scroll-section">
+    <!-- 01 — HERO -->
+    <section id="sec-01" class="section scroll-section section-in-view hero-section">
       <div class="section-container hero-layout">
         <div class="grid-span-8 hero-text-block">
-<div class="hero-label font-mono text-accent">[ 01 / HERO ENTRY ]</div>
-        <div class="hero-badge font-mono"><span class="status-badge status-live"></span>CURRENTLY BUILDING AUTOMATION MICRO-SYSTEMS, KATHMANDU</div>
-        <h2 class="hero-title display-shout text-split">RABI DAHAL</h2>
-          <h3 class="hero-subtitle display-shout text-split">EMBEDDED ENGINEER</h3>
-          <p class="hero-tagline display-shout text-split">WIRING SENSORS, WRITING CODE & CHASING WEIRD IDEAS INTO WORKING MACHINES.</p>
-        </div>
-        <div class="grid-span-4 hero-visual-placeholder">
-          <div class="spinning-hint font-mono">
-            <span>[ ROTATION ACTIVE ]</span>
-            <span>SCROLL DEPTH CONTROLS RPM</span>
+          <div class="hero-eyebrow font-mono">Software Developer &amp; Builder — Bhaktapur, Nepal</div>
+          <h1 class="hero-title display-shout text-split">Rabi Dahal</h1>
+          <p class="hero-tagline">
+            I build things end-to-end — full-stack web apps, Android apps, simulations and games — in TypeScript, Python, Kotlin and C.
+          </p>
+          <div class="hero-badge font-mono"><span class="status-dot"></span>Currently building: Cracked, a 3D FPS in Godot</div>
+          <div class="hero-actions">
+            <a href="#sec-04" class="btn btn-primary hover-btn">View projects</a>
+            <a href="#sec-08" class="btn btn-ghost hover-btn">Get in touch</a>
           </div>
+          <ul class="hero-socials font-mono">
+            <li><a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener">GitHub ↗</a></li>
+            <li><a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener">LinkedIn ↗</a></li>
+            <li><a href="mailto:rrabi.dahal@gmail.com">Email ↗</a></li>
+          </ul>
         </div>
+        <div class="grid-span-4 hero-visual-placeholder" aria-hidden="true"></div>
       </div>
-      <div class="section-divider-line"></div>
+      <a href="#sec-02" class="scroll-cue font-mono" aria-label="Scroll to About">Scroll <span aria-hidden="true">↓</span></a>
     </section>
 
-    <!-- 02 — BIOGRAPHY SECTION -->
+    <!-- 02 — ABOUT -->
     <section id="sec-02" class="section scroll-section">
       <div class="section-container biography-layout">
-        <div class="grid-span-8 bio-text-block">
-          <div class="section-num font-mono">02 / BIOGRAPHY</div>
-          <h2 class="section-title display-shout text-split">HARDWARE LOGIC.</h2>
-          <p class="bio-desc font-mono">
-            An embedded systems & IoT specialist in Kathmandu combining Python, C, and low-level logic foundations with real hardware. Hands-on lab-style building: prototype, break, rebuild cleaner. High-contrast engineering thinking meets dark ink-black panels.
-          </p>
+        <div class="grid-span-12">
+          <div class="section-num font-mono">02 — About</div>
+          <h2 class="section-title display-shout">Idea to shipped.</h2>
+        </div>
+        <div class="grid-span-4 bio-photo-col">
           <div class="bio-photo-wrapper">
-            <img src="assets/Rabi-Dahal-Profile.png" alt="Rabi Dahal Portrait" class="bio-photo filter-bw" loading="lazy" decoding="async" width="400" height="500">
+            <img src="assets/Rabi-Dahal-Profile.png" alt="Portrait of Rabi Dahal" class="bio-photo" loading="lazy" decoding="async" width="400" height="500">
           </div>
         </div>
-        <div class="grid-span-4 bio-meta-block">
-          <div class="bio-metadata font-mono">
+        <div class="grid-span-8 bio-text-block">
+          <p class="bio-desc">
+            I'm Rabi Dahal — proobker on GitHub — a developer based in Bhaktapur, Nepal. I started with small C games and web pages, and now ship full-stack products, Android apps and simulation engines.
+          </p>
+          <p class="bio-desc">
+            My process is hands-on and iterative: prototype quickly, ship it, then rebuild cleaner. Recent work spans an AI-powered social quest game, a women's-safety app, a peer-to-peer aircraft conflict-resolution simulator and a 3D shooter.
+          </p>
+          <dl class="bio-metadata font-mono">
             <div class="meta-row">
-              <span class="meta-label">ROLE:</span>
-              <span class="meta-val">EMBEDDED // IOT</span>
+              <dt class="meta-label">Role</dt>
+              <dd class="meta-val">Software Developer</dd>
             </div>
             <div class="meta-row">
-              <span class="meta-label">EXPERIENCE:</span>
-              <span class="meta-val">2+ YEARS</span>
+              <dt class="meta-label">On GitHub</dt>
+              <dd class="meta-val">Since 2021 · @proobker</dd>
             </div>
             <div class="meta-row">
-              <span class="meta-label">LOC:</span>
-              <span class="meta-val">KATHMANDU // NEPAL</span>
+              <dt class="meta-label">Location</dt>
+              <dd class="meta-val">Bhaktapur, Nepal</dd>
             </div>
             <div class="meta-row">
-              <span class="meta-label">STACK:</span>
-              <span class="meta-val">PYTHON / C / HTML</span>
+              <dt class="meta-label">Languages</dt>
+              <dd class="meta-val">TypeScript · Python · Kotlin · C · GDScript</dd>
             </div>
             <div class="meta-row">
-              <span class="meta-label">CORE LOGIC:</span>
-              <span class="meta-val">ALGORITHMS // AUTOMATION</span>
+              <dt class="meta-label">Builds</dt>
+              <dd class="meta-val">Web · Android · Simulations · Games</dd>
             </div>
             <div class="meta-row">
-              <span class="meta-label">BUILDING STYLE:</span>
-              <span class="meta-val">PROTOTYPE / BREAK / REBUILD</span>
+              <dt class="meta-label">Approach</dt>
+              <dd class="meta-val">Prototype → Ship → Rebuild</dd>
             </div>
-          </div>
+          </dl>
         </div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 03 — ACHIEVEMENTS SECTION -->
+    <!-- 03 — HIGHLIGHTS -->
     <section id="sec-03" class="section scroll-section">
       <div class="section-container achievements-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">03 / ACHIEVEMENTS</div>
-          <h2 class="section-title display-shout text-split">QUANTIFIED TRAIL.</h2>
+          <div class="section-num font-mono">03 — Highlights</div>
+          <h2 class="section-title display-shout">At a glance.</h2>
         </div>
         <div class="grid-span-3 stat-card">
-          <div class="stat-num display-shout" data-target="2">0</div>
-          <div class="stat-label font-mono">YEARS IN THE LAB</div>
+          <div class="stat-num display-shout" data-target="5" data-suffix="+">0</div>
+          <div class="stat-label font-mono">Years on GitHub</div>
+        </div>
+        <div class="grid-span-3 stat-card">
+          <div class="stat-num display-shout" id="stat-projects" data-target="0">0</div>
+          <div class="stat-label font-mono">Featured projects</div>
         </div>
         <div class="grid-span-3 stat-card">
           <div class="stat-num display-shout" id="stat-repos" data-target="0">0</div>
-          <div class="stat-label font-mono">PUBLIC REPOS DEPLOYED</div>
+          <div class="stat-label font-mono">Public repositories</div>
         </div>
         <div class="grid-span-3 stat-card">
           <div class="stat-num display-shout" id="stat-followers" data-target="0">0</div>
-          <div class="stat-label font-mono">FOLLOWERS ON GITHUB</div>
-        </div>
-        <div class="grid-span-3 stat-card">
-          <div class="stat-num display-shout" data-target="100">0</div>
-          <div class="stat-label font-mono">CURIOSITY KEPT %</div>
+          <div class="stat-label font-mono">GitHub followers</div>
         </div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 04 — CREATIVE WORK / GALLERY SECTION -->
+    <!-- 04 — FEATURED WORK -->
     <section id="sec-04" class="section scroll-section">
       <div class="section-container gallery-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">04 / SYSTEM BUILDS</div>
-          <h2 class="section-title display-shout text-split">ARCS CREATED.</h2>
-          <p class="gallery-subtitle font-mono">SELECTED BUILDS REPRESENTED AS ARC REACTORS. HOVER TO CHARGE THE CORE — CLICK TO OPEN THE BUILD.</p>
+          <div class="section-num font-mono">04 — Featured work</div>
+          <h2 class="section-title display-shout">Featured work.</h2>
+          <p class="section-lede">A selection of recent builds. Open a card to see the live demo or source code.</p>
         </div>
 
         <div class="arc-gallery" id="arc-gallery"></div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 05 — FAMOUS PROJECTS SECTION -->
+    <!-- 05 — ALL PROJECTS -->
     <section id="sec-05" class="section scroll-section">
       <div class="section-container projects-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">05 / MAJOR INDEX</div>
-          <h2 class="section-title display-shout text-split">KEY BUILDS.</h2>
+          <div class="section-num font-mono">05 — All projects</div>
+          <h2 class="section-title display-shout">Project index.</h2>
         </div>
         <div class="grid-span-12 project-table-wrapper">
-          <table class="project-table font-mono">
+          <table class="project-table">
             <thead>
-              <tr class="table-header-row">
-                <th>INDEX</th>
-                <th>PROJECT TITLE</th>
-                <th>ROLE</th>
-                <th>YEAR</th>
+              <tr class="table-header-row font-mono">
+                <th scope="col">#</th>
+                <th scope="col">Project</th>
+                <th scope="col" class="col-desc">Description</th>
+                <th scope="col">Stack</th>
+                <th scope="col">Year</th>
               </tr>
             </thead>
             <tbody id="project-table-body"></tbody>
           </table>
         </div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 06 — TIMELINE SECTION -->
+    <!-- 06 — JOURNEY -->
     <section id="sec-06" class="section scroll-section">
       <div class="section-container timeline-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">06 / PATHWAY</div>
-          <h2 class="section-title display-shout text-split">CHRONOLOGY.</h2>
+          <div class="section-num font-mono">06 — Journey</div>
+          <h2 class="section-title display-shout">Journey so far.</h2>
         </div>
-        <div class="grid-span-4 timeline-left font-mono">
+        <div class="grid-span-4 timeline-left">
           <p class="timeline-intro">
-            A visual flow of engineering evolution. The central timeline progress bar fills dynamically in sync with viewport scroll position.
+            From first C games to simulation engines — the milestones behind my GitHub, in order.
           </p>
         </div>
         <div class="grid-span-8 timeline-right">
           <div class="timeline-vertical-path">
             <div id="timeline-progress" class="timeline-fill"></div>
           </div>
-          <div class="timeline-events">
-            <div class="timeline-event">
+          <ol class="timeline-events">
+            <li class="timeline-event">
               <div class="event-marker"></div>
-              <div class="event-year font-mono">2024.05</div>
-              <h3 class="event-title display-shout">FOUNDATION SEED</h3>
-              <p class="event-desc font-mono">Completed SEE with a 3.91 GPA at Gladstone Academy. Science expos, Red Cross volunteering, public speaking while the engineering itch formed.</p>
-            </div>
-            <div class="timeline-event">
+              <div class="event-year font-mono">May 2024</div>
+              <h3 class="event-title">Foundations</h3>
+              <p class="event-desc">Completed SEE with a 3.91 GPA at Gladstone Academy. Science expos, Red Cross volunteering and public speaking — where the engineering itch first formed.</p>
+            </li>
+            <li class="timeline-event">
               <div class="event-marker"></div>
-              <div class="event-year font-mono">2024.09</div>
-              <h3 class="event-title display-shout">PYTHON FOUNDATIONS</h3>
-              <p class="event-desc font-mono">Started +2 Science at Trinity College. Earned CS50P (Harvard) and began solving algorithm problems in Python consistently.</p>
-            </div>
-            <div class="timeline-event">
+              <div class="event-year font-mono">Dec 2024</div>
+              <h3 class="event-title">First commits</h3>
+              <p class="event-desc">Snake and Hangman in C, plus small web builds — a to-do app, tax calculator, weather checker and an e-commerce mockup.</p>
+            </li>
+            <li class="timeline-event">
               <div class="event-marker"></div>
-              <div class="event-year font-mono">2025.07</div>
-              <h3 class="event-title display-shout">FULL-STACK DETOUR</h3>
-              <p class="event-desc font-mono">Built QST (Next.js + Supabase + Gemini) turning real-life activities into an RPG quest game, and designed Rakshya, a personal safety mobile system.</p>
-            </div>
-            <div class="timeline-event">
+              <div class="event-year font-mono">Aug 2025</div>
+              <h3 class="event-title">Python &amp; algorithms</h3>
+              <p class="event-desc">Earned Harvard's CS50P alongside +2 Science at Trinity College. Built an A* pathfinding visualizer for map images and a geography quiz game.</p>
+            </li>
+            <li class="timeline-event">
               <div class="event-marker"></div>
-              <div class="event-year font-mono">2026.02</div>
-              <h3 class="event-title display-shout">EMBEDDED FOCUS</h3>
-              <p class="event-desc font-mono">Shifting toward embedded intelligence and real-world automation micro-systems — tight feedback loops, hardware plus software, design end-to-end.</p>
-            </div>
-          </div>
+              <div class="event-year font-mono">Apr 2026</div>
+              <h3 class="event-title">Full-stack &amp; mobile</h3>
+              <p class="event-desc">Shipped Rakshya, a one-tap SOS safety app, then rebuilt it natively in Kotlin as Rakshyaa. Built QST (Next.js, Supabase, Gemini), turning real life into an RPG quest game.</p>
+            </li>
+            <li class="timeline-event">
+              <div class="event-marker"></div>
+              <div class="event-year font-mono">Sep 2026</div>
+              <h3 class="event-title">Simulations &amp; games</h3>
+              <p class="event-desc">SkyMesh, a failure-resilient peer-to-peer aircraft conflict-resolution simulator; TerraSim, a terrain simulation engine; and Cracked, a 3D FPS in Godot. Plus hackathon builds.</p>
+            </li>
+          </ol>
         </div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 07 — GITHUB SECTION -->
+    <!-- 07 — GITHUB -->
     <section id="sec-07" class="section scroll-section">
       <div class="section-container github-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">07 / PUBLIC ARCHIVE</div>
-          <h2 class="section-title display-shout text-split">GITHUB TRAIL.</h2>
+          <div class="section-num font-mono">07 — Open source</div>
+          <h2 class="section-title display-shout">On GitHub.</h2>
         </div>
         <div class="grid-span-12 github-stats-row">
-          <div class="github-stat font-mono">
-            <span class="github-stat-value" id="gh-repos">--</span>
-            <span class="github-stat-label">PUBLIC REPOS</span>
+          <div class="github-stat">
+            <span class="github-stat-value" id="gh-repos">—</span>
+            <span class="github-stat-label font-mono">Public repos</span>
           </div>
-          <div class="github-stat font-mono">
-            <span class="github-stat-value" id="gh-followers">--</span>
-            <span class="github-stat-label">FOLLOWERS</span>
+          <div class="github-stat">
+            <span class="github-stat-value" id="gh-followers">—</span>
+            <span class="github-stat-label font-mono">Followers</span>
           </div>
-          <div class="github-stat font-mono">
-            <span class="github-stat-value" id="gh-updated">--</span>
-            <span class="github-stat-label">LAST UPDATED</span>
+          <div class="github-stat">
+            <span class="github-stat-value" id="gh-updated">—</span>
+            <span class="github-stat-label font-mono">Last active</span>
           </div>
         </div>
         <div class="grid-span-12 repo-list" id="gh-repo-list">
           <!-- Populated by script.js -->
         </div>
+        <div class="grid-span-12">
+          <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener" class="btn btn-ghost hover-btn">View full profile ↗</a>
+        </div>
       </div>
-      <div class="section-divider-line"></div>
     </section>
 
-    <!-- 08 — CONTACT / FOOTER SECTION -->
+    <!-- 08 — CONTACT -->
     <section id="sec-08" class="section scroll-section">
       <div class="section-container contact-layout">
         <div class="grid-span-12">
-          <div class="section-num font-mono">08 / TERMINAL</div>
-          <h2 class="section-title display-shout text-split">LET'S TALK.</h2>
+          <div class="section-num font-mono">08 — Contact</div>
+          <h2 class="section-title display-shout contact-title">Let's build something.</h2>
+          <p class="section-lede">Open to internships, collaborations and hackathon teams. The fastest way to reach me is email.</p>
         </div>
 
-        <!-- Socials and Contacts -->
-        <div class="grid-span-6 contact-links-block font-mono">
-          <div class="links-grid">
-            <a href="mailto:rrabi.dahal@gmail.com" class="contact-link hover-btn" data-label="rrabi.dahal@gmail.com">EMAIL</a>
-            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener" class="contact-link hover-btn" data-label="github.com/proobker">GITHUB</a>
-            <a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener" class="contact-link hover-btn" data-label="linkedin.com/in/rabi-dahal">LINKEDIN</a>
+        <div class="grid-span-12 contact-links-block">
+          <a href="mailto:rrabi.dahal@gmail.com" class="contact-email hover-btn">rrabi.dahal@gmail.com <span aria-hidden="true">→</span></a>
+          <div class="links-grid font-mono">
+            <a href="https://github.com/proobker" target="_blank" rel="noreferrer noopener" class="contact-link">
+              <span class="contact-link-label">GitHub</span><span class="contact-link-val">github.com/proobker ↗</span>
+            </a>
+            <a href="https://linkedin.com/in/rabi-dahal" target="_blank" rel="noreferrer noopener" class="contact-link">
+              <span class="contact-link-label">LinkedIn</span><span class="contact-link-val">linkedin.com/in/rabi-dahal ↗</span>
+            </a>
+            <a href="mailto:rrabi.dahal@gmail.com" class="contact-link">
+              <span class="contact-link-label">Email</span><span class="contact-link-val">rrabi.dahal@gmail.com ↗</span>
+            </a>
           </div>
         </div>
 
-        <!-- Interactive footer block -->
-        <div class="grid-span-6 footer-interactive-block">
-
-          <!-- Pointing Hand Container -->
-          <div class="hand-container-box">
-            <svg id="pointing-hand-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <g id="hand-rotator">
-                <path class="hand-path" d="M30 65 L30 80 L70 80 L70 65 L60 65 L60 55 L50 55 L50 45 L40 45 L40 55 L30 55 Z" />
-                <path class="hand-path" d="M60 55 L90 55 L90 45 L60 45" />
-                <path class="hand-path" d="M40 55 L50 55" />
-                <path class="hand-path" d="M50 65 L60 65" />
-              </g>
-              <circle cx="50" cy="62" r="1.5" class="hand-dot" />
-            </svg>
-            <div id="hand-target-label" class="font-mono text-accent">[ POINTING IDLE ]</div>
+        <footer class="grid-span-12 site-footer font-mono">
+          <div class="divider-grooves" aria-hidden="true"></div>
+          <div class="footer-row">
+            <span>© 2026 Rabi Dahal</span>
+            <span>Web · Android · Simulations · Games — Bhaktapur, Nepal</span>
+            <a href="#sec-01">Back to top ↑</a>
           </div>
-
-          <!-- Manual Accent Vibe Panel -->
-          <div class="room-sync-panel font-mono">
-            <div class="panel-header">ACCENT COLOR CONTROL</div>
-            <p class="panel-info">Pick a vibe to restyle the accent details of the whole system. Live CSS variable interpolation.</p>
-
-            <div class="vibe-presets-container">
-              <span>MANUAL VIBES:</span>
-              <div class="vibe-presets">
-                <button class="vibe-btn" data-color="#00E5FF" style="background-color: #00E5FF;" aria-label="Preset Cyan"></button>
-                <button class="vibe-btn" data-color="#FF5A36" style="background-color: #FF5A36;" aria-label="Preset Orange"></button>
-                <button class="vibe-btn" data-color="#ADFF2F" style="background-color: #ADFF2F;" aria-label="Preset Lime"></button>
-                <button class="vibe-btn" data-color="#FF007F" style="background-color: #FF007F;" aria-label="Preset Magenta"></button>
-                <button class="vibe-btn" data-color="#BD00FF" style="background-color: #BD00FF;" aria-label="Preset Purple"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Signature arc reactor energy motif at bottom footer -->
-        <div class="grid-span-12 energy-divider">
-          <div class="divider-grooves"></div>
-          <div class="divider-text font-mono">RABI DAHAL — EMBEDDED // IOT // AUTOMATION — KATHMANDU [08]</div>
-        </div>
+        </footer>
       </div>
     </section>
 

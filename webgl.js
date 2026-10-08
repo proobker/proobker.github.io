@@ -53,8 +53,11 @@ function positionDiscForViewport() {
   if (window.innerWidth <= 992) {
     discGroup.position.set(0, 0, 0);
     discGroup.scale.set(0.8, 0.8, 0.8);
-  } else {
+  } else if (window.innerWidth <= 1280) {
     discGroup.position.set(2.2, 0, 0);
+    discGroup.scale.set(1.0, 1.0, 1.0);
+  } else {
+    discGroup.position.set(3.2, 0, 0);
     discGroup.scale.set(1.0, 1.0, 1.0);
   }
 }

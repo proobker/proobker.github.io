@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Arc reactor core">
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="Arc reactor core">
   <title>Arc core</title>
   <defs>
     <radialGradient id="bg" cx="0.5" cy="0.5" r="0.5">

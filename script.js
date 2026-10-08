@@ -1,8 +1,10 @@
 /* ----------------------------------------------------
-   Rabi Dahal — Brutalist Swiss Systems Portfolio Logic
+   Rabi Dahal — Portfolio Logic
    Core scripting: interactions, scroll effects, audio,
-   Vektor guides, accent control, and GitHub integration.
+   project rendering and GitHub integration.
 ---------------------------------------------------- */
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ==========================================
 // 1. Audio Synth Module (Web Audio API)
@@ -19,8 +21,9 @@ function initAudio() {
 }
 
 function playBlip(type) {
+  if (isMuted) return;
   initAudio();
-  if (isMuted || !audioCtx) return;
+  if (!audioCtx) return;
 
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -63,12 +66,12 @@ if (muteBtn) {
 
     if (!isMuted) {
       initAudio();
-      soundStatus.textContent = 'ON';
+      soundStatus.textContent = 'On';
       soundStatus.classList.add('active-status');
       muteBtn.setAttribute('aria-pressed', 'true');
       playBlip('click');
     } else {
-      soundStatus.textContent = 'MUTED';
+      soundStatus.textContent = 'Off';
       soundStatus.classList.remove('active-status');
       muteBtn.setAttribute('aria-pressed', 'false');
     }
@@ -85,19 +88,23 @@ let targetCursorX = 0, targetCursorY = 0;
 window.addEventListener('mousemove', (e) => {
   targetCursorX = e.clientX;
   targetCursorY = e.clientY;
+  if (cursor) cursor.classList.add('visible');
+});
+
+document.addEventListener('mouseleave', () => {
+  if (cursor) cursor.classList.remove('visible');
 });
 
 function updateCursorPosition() {
   if (!cursor) return;
-  cursorX += (targetCursorX - cursorX) * 0.15;
-  cursorY += (targetCursorY - cursorY) * 0.15;
-  cursor.style.left = `${cursorX}px`;
-  cursor.style.top = `${cursorY}px`;
+  cursorX += (targetCursorX - cursorX) * 0.2;
+  cursorY += (targetCursorY - cursorY) * 0.2;
+  cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
 }
 
 function setupCursorHovers() {
-  const HOVER_SELECTOR = '.hover-btn, .nav-item, .arc-reactor, .project-row, .vibe-btn, .repo-item';
-  const hoverableDescendant = (el) => el && el.closest(HOVER_SELECTOR);
+  const HOVER_SELECTOR = 'a, button, .project-row';
+  const hoverableDescendant = (el) => el && el.closest && el.closest(HOVER_SELECTOR);
   let hoveredEl = null;
 
   document.addEventListener('mouseover', (e) => {
@@ -132,84 +139,49 @@ function setupTextSplitting() {
   const textSplitElements = document.querySelectorAll('.text-split');
   textSplitElements.forEach(element => {
     const originalText = element.textContent.trim();
+    element.setAttribute('aria-label', originalText);
     element.textContent = '';
 
     const words = originalText.split(/\s+/);
     words.forEach((word, i) => {
       const wordSpan = document.createElement('span');
       wordSpan.classList.add('word');
+      wordSpan.setAttribute('aria-hidden', 'true');
 
       [...word].forEach(char => {
         const span = document.createElement('span');
         span.textContent = char;
         span.classList.add('letter-hover');
-        span.addEventListener('mouseenter', () => playBlip('hover'));
         wordSpan.appendChild(span);
       });
 
       element.appendChild(wordSpan);
 
       if (i < words.length - 1) {
-        const space = document.createElement('span');
-        space.textContent = '\u00A0';
-        element.appendChild(space);
+        element.appendChild(document.createTextNode(' '));
       }
     });
   });
 }
 
 function setupMagneticButtons() {
+  if (prefersReducedMotion) return;
   const magneticButtons = document.querySelectorAll('.hover-btn');
   magneticButtons.forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
     });
     btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0px, 0px)';
+      btn.style.transform = '';
     });
   });
 }
 
 // ==========================================
-// 4. Intro Overlay Controller
-// ==========================================
-function runIntroSequence() {
-  const introOverlay = document.querySelector('.intro-overlay');
-  const loaderBar = document.getElementById('intro-bar');
-  if (!introOverlay || !loaderBar) return;
-
-  let introDone = false;
-
-  function dismissIntro() {
-    if (introDone) return;
-    introDone = true;
-    introOverlay.classList.add('dismissed');
-    setTimeout(() => {
-      introOverlay.style.display = 'none';
-    }, 1200);
-  }
-
-  setTimeout(() => {
-    loaderBar.style.width = '100%';
-  }, 100);
-
-  setTimeout(() => {
-    dismissIntro();
-    setTimeout(() => triggerVektor('sec-01'), 300);
-  }, 2600);
-
-  introOverlay.addEventListener('click', () => {
-    playBlip('click');
-    dismissIntro();
-    triggerVektor('sec-01');
-  });
-}
-
-// ==========================================
-// 5. Scroll triggers, Navigation, counter & timeline
+// 4. Scroll triggers, Navigation, counter & timeline
 // ==========================================
 let statsTriggered = false;
 
@@ -218,22 +190,27 @@ function fireStatsCounter() {
 
   statNumbers.forEach(stat => {
     const target = parseInt(stat.getAttribute('data-target')) || 0;
-    const duration = 2000;
+    const suffix = stat.getAttribute('data-suffix') || '';
+
+    if (prefersReducedMotion) {
+      stat.textContent = target + suffix;
+      return;
+    }
+
+    const duration = 1600;
     const startTime = performance.now();
 
     function updateCounter(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      const easeProgress = progress * (2 - progress);
-      const currentVal = Math.floor(easeProgress * target);
-
-      stat.textContent = currentVal;
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      stat.textContent = Math.floor(easeProgress * target);
 
       if (progress < 1) {
         requestAnimationFrame(updateCounter);
       } else {
-        stat.textContent = target;
+        stat.textContent = target + suffix;
       }
     }
     requestAnimationFrame(updateCounter);
@@ -249,122 +226,64 @@ function setupScrollObservers() {
   const sections = document.querySelectorAll('.scroll-section');
   const navItems = document.querySelectorAll('.nav-item');
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -20% 0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('section-in-view');
 
-        entry.target.classList.add('section-in-view');
-
-        const secIndex = id.replace('sec-', '');
-        navItems.forEach(item => {
-          if (item.getAttribute('data-sec') === secIndex) {
-            item.classList.add('active');
-          } else {
-            item.classList.remove('active');
-          }
-        });
-
-        if (id === 'sec-03' && !statsTriggered) {
-          triggerStatsCounter();
-        }
-
-        triggerVektor(id);
+      if (entry.target.id === 'sec-03' && !statsTriggered) {
+        triggerStatsCounter();
       }
     });
-  }, observerOptions);
+  }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
 
-  sections.forEach(section => observer.observe(section));
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const secIndex = entry.target.id.replace('sec-', '');
+      navItems.forEach(item => {
+        const isActive = item.getAttribute('data-sec') === secIndex;
+        item.classList.toggle('active', isActive);
+        if (isActive) {
+          item.setAttribute('aria-current', 'true');
+        } else {
+          item.removeAttribute('aria-current');
+        }
+      });
+    });
+  }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  sections.forEach(section => {
+    revealObserver.observe(section);
+    navObserver.observe(section);
+  });
 }
 
 function trackScrollPositions() {
-  const timelineSection = document.getElementById('sec-06');
+  // Dim the WebGL reactor once the hero is behind us so body copy stays readable
+  document.body.classList.toggle('past-hero', window.scrollY > window.innerHeight * 0.55);
+
+  const timelineRight = document.querySelector('.timeline-right');
   const timelineFill = document.getElementById('timeline-progress');
 
-  if (!timelineSection || !timelineFill) return;
+  if (!timelineRight || !timelineFill) return;
 
-  const rect = timelineSection.getBoundingClientRect();
-  const sectionHeight = rect.height;
-  const viewportHeight = window.innerHeight;
-
-  const relativeScroll = -rect.top;
-  const scrollRange = sectionHeight - viewportHeight;
-
-  if (scrollRange > 0) {
-    const percent = Math.min(Math.max((relativeScroll / scrollRange) * 100, 0), 100);
-    timelineFill.style.height = `${percent}%`;
-  }
+  const rect = timelineRight.getBoundingClientRect();
+  const viewportAnchor = window.innerHeight * 0.6;
+  const percent = Math.min(Math.max(((viewportAnchor - rect.top) / rect.height) * 100, 0), 100);
+  timelineFill.style.height = `${percent}%`;
 }
 
 // ==========================================
-// 6. VEKTOR Guide System
-// ==========================================
-let vektorBusy = false;
-const triggeredVektor = {};
-
-const vektorNarrations = {
-  'sec-00': "VROSKI: YO. RABI DAHAL ONLINE. SCROLL TO MOVE — CLICK TO SKIP.",
-  'sec-01': "VROSKI: THE DISC SPINS FASTER WHEN YOU SCRATCH DOWN. COOL HUH.",
-  'sec-02': "VROSKI: MY GUY — KATHMANDU, SENSORS, BREAK IT TIL IT SCANS CLEAN.",
-  'sec-03': "VROSKI: NUMBERS DON'T LIE. HOVER AND WATCH 'EM COUNT.",
-  'sec-04': "VROSKI: CORES I BUILT MYSELF. CLICK ONE — IT OPENS THE BUILD.",
-  'sec-05': "VROSKI: KEY BUILDS ON DECK. HOVER FOR THE PEEK, CLICK TO OPEN.",
-  'sec-06': "VROSKI: THIS IS THE PATH I TOOK — FILLS UP AS YOU SCROLL.",
-  'sec-07': "VROSKI: GITHUB TRAIL STREAMING IN. THE ARCHIVE NEVER LIES.",
-  'sec-08': "VROSKI: TRAIL ENDS HERE. PICK A VIBE, OR HIT MY INBOX."
-};
-
-function triggerVektor(sectionId) {
-  if (vektorBusy || triggeredVektor[sectionId] || !vektorNarrations[sectionId]) return;
-
-  triggeredVektor[sectionId] = true;
-  vektorBusy = true;
-
-  const text = vektorNarrations[sectionId];
-  const container = document.getElementById('vektor-container');
-  const textContainer = document.getElementById('vektor-text');
-
-  container.className = 'drawing';
-  textContainer.textContent = '';
-
-  let charIndex = 0;
-
-  function typeCharacter() {
-    if (charIndex < text.length) {
-      textContainer.textContent += text.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeCharacter, 25);
-    } else {
-      setTimeout(retractVektorGuide, 4500);
-    }
-  }
-
-  setTimeout(typeCharacter, 600);
-
-  function retractVektorGuide() {
-    container.className = 'retracting';
-    setTimeout(() => {
-      container.className = 'vektor-hidden';
-      vektorBusy = false;
-    }, 1500);
-  }
-}
-
-// ==========================================
-// 7. Floating Previews Module (Section 05)
+// 5. Floating Previews Module (Section 05)
 // ==========================================
 function setupFloatingPreviews() {
   const previewBox = document.getElementById('floating-preview');
   const previewImg = document.getElementById('preview-img');
   if (!previewBox || !previewImg) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return;
 
-  const projectRowOf = (el) => el && el.closest('.project-row');
+  const projectRowOf = (el) => el && el.closest && el.closest('.project-row');
 
   document.addEventListener('mouseover', (e) => {
     const row = projectRowOf(e.target);
@@ -378,15 +297,8 @@ function setupFloatingPreviews() {
     const row = projectRowOf(e.target);
     if (!row || !previewBox.classList.contains('visible')) return;
 
-    const x = e.clientX + 20;
-    const y = e.clientY + 20;
-    previewBox.style.left = `${x}px`;
-    previewBox.style.top = `${y}px`;
-
-    const rect = row.getBoundingClientRect();
-    const relativeX = (e.clientX - rect.left) / rect.width - 0.5;
-    const tiltY = relativeX * 25;
-    previewBox.style.transform = `translate(-50%, -50%) rotateY(${tiltY}deg) rotateX(10deg)`;
+    previewBox.style.left = `${e.clientX + 24}px`;
+    previewBox.style.top = `${e.clientY + 24}px`;
   });
 
   document.addEventListener('mouseout', (e) => {
@@ -394,156 +306,11 @@ function setupFloatingPreviews() {
     const nextRow = e.relatedTarget ? projectRowOf(e.relatedTarget) : null;
     if (nextRow) return;
     previewBox.classList.remove('visible');
-    previewBox.style.transform = 'translate(-50%, -50%) scale(0.6)';
-  });
-
-  document.addEventListener('click', (e) => {
-    const row = projectRowOf(e.target);
-    if (!row || !window.matchMedia('(pointer: coarse)').matches) return;
-
-    e.preventDefault();
-    if (previewBox.classList.contains('visible')) {
-      previewBox.classList.remove('visible');
-      return;
-    }
-    previewImg.src = row.getAttribute('data-preview');
-    previewBox.classList.add('visible');
-    const rect = row.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-    previewBox.style.left = `${x}px`;
-    previewBox.style.top = `${y}px`;
-    previewBox.style.transform = 'translate(-50%, -50%) rotateX(8deg)';
   });
 }
 
 // ==========================================
-// 8. Interactive Pointing Hand (Footer)
-// ==========================================
-const handRotator = document.getElementById('hand-rotator');
-const handLabel = document.getElementById('hand-target-label');
-const contactLinks = document.querySelectorAll('.contact-link');
-const contactSection = document.getElementById('sec-08');
-
-let targetAngle = 0;
-let currentAngle = 0;
-
-function setupPointingHand() {
-  window.addEventListener('mousemove', (e) => {
-    let closestLink = null;
-    let minDistance = 250;
-
-    contactLinks.forEach(link => {
-      const rect = link.getBoundingClientRect();
-      const linkCenterX = rect.left + rect.width / 2;
-      const linkCenterY = rect.top + rect.height / 2;
-      const dist = Math.hypot(e.clientX - linkCenterX, e.clientY - linkCenterY);
-
-      if (dist < minDistance) {
-        minDistance = dist;
-        closestLink = link;
-      }
-    });
-
-    const handSvg = document.getElementById('pointing-hand-svg');
-    if (!handSvg) return;
-
-    const handRect = handSvg.getBoundingClientRect();
-    const pivotX = handRect.left + (handRect.width * 0.5);
-    const pivotY = handRect.top + (handRect.height * 0.62);
-
-    let focusX, focusY;
-
-    if (closestLink) {
-      const linkRect = closestLink.getBoundingClientRect();
-      focusX = linkRect.left + linkRect.width / 2;
-      focusY = linkRect.top + linkRect.height / 2;
-
-      const label = closestLink.getAttribute('data-label');
-      handLabel.textContent = `POINTING AT: [${label.toUpperCase()}]`;
-      handLabel.classList.add('text-accent');
-    } else {
-      const secRect = contactSection.getBoundingClientRect();
-      if (secRect.top < window.innerHeight && secRect.bottom > 0) {
-        focusX = e.clientX;
-        focusY = e.clientY;
-        handLabel.textContent = `POINTING DETECTED`;
-        handLabel.classList.remove('text-accent');
-      } else {
-        targetAngle = 0;
-        handLabel.textContent = `[ POINTING IDLE ]`;
-        handLabel.classList.remove('text-accent');
-        return;
-      }
-    }
-
-    const dx = focusX - pivotX;
-    const dy = focusY - pivotY;
-    const angleRad = Math.atan2(dy, dx);
-    targetAngle = angleRad * (180 / Math.PI);
-  });
-}
-
-function updateHandRotation() {
-  currentAngle += (targetAngle - currentAngle) * 0.12;
-  if (handRotator) {
-    handRotator.style.transformOrigin = '50px 62px';
-    handRotator.style.transform = `rotate(${currentAngle}deg)`;
-  }
-}
-
-// ==========================================
-// 9. Accent Color Control (Manual Vibe Presets)
-// ==========================================
-const vibeBtns = document.querySelectorAll('.vibe-btn');
-
-let currentRGB = { r: 255, g: 77, b: 0 };
-let targetRGB = { r: 255, g: 77, b: 0 };
-
-vibeBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const hex = btn.getAttribute('data-color');
-    const rgb = hexToRgb(hex);
-    if (rgb) {
-      targetRGB = rgb;
-      playBlip('click');
-    }
-  });
-});
-
-function hexToRgb(hex) {
-  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  const fullHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
-const componentToHex = (c) => {
-  const hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-};
-
-const rgbToHex = (r, g, b) => "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-
-function updateAccentInterpolation() {
-  currentRGB.r += (targetRGB.r - currentRGB.r) * 0.08;
-  currentRGB.g += (targetRGB.g - currentRGB.g) * 0.08;
-  currentRGB.b += (targetRGB.b - currentRGB.b) * 0.08;
-
-  const hexVal = rgbToHex(
-    Math.round(currentRGB.r),
-    Math.round(currentRGB.g),
-    Math.round(currentRGB.b)
-  );
-  document.documentElement.style.setProperty('--accent', hexVal);
-}
-
-// ==========================================
-// 10. GitHub Integration (Live + Fallback)
+// 6. Projects + GitHub Integration (Live + Fallback)
 // ==========================================
 const ghRepos = document.getElementById('gh-repos');
 const ghFollowers = document.getElementById('gh-followers');
@@ -555,25 +322,25 @@ const fallbackProjectsData = {
       name: "qst", title: "QST", description: "RPG-style social adventure game — AI quests, proof uploads, XP badges.",
       language: "TypeScript", stars: 1, forks: 0, year: 2026,
       url: "https://github.com/proobker/qst", homepage: "https://qst-kappa.vercel.app",
-      art: "assets/qst-logo.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+      art: "assets/qst-logo.svg"
     },
     {
       name: "rakshyaa", title: "RAKSHYAA", description: "V2 of the women's safety app.",
       language: "Kotlin", stars: 2, forks: 1, year: 2026,
       url: "https://github.com/proobker/rakshyaa", homepage: "https://rakshyaa.vercel.app",
-      art: "assets/project-rakshyaa.svg", tags: "KOTLIN // 2★ // 1 FORKS // 2026"
+      art: "assets/project-rakshyaa.svg"
     },
     {
       name: "terrasim", title: "TERRASIM", description: "Terrain simulation engine.",
       language: "Python", stars: 0, forks: 0, year: 2026,
       url: "https://github.com/proobker/terrasim", homepage: null,
-      art: "assets/project-terrasim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+      art: "assets/project-terrasim.svg"
     },
     {
       name: "flight-sim", title: "FLIGHT SIM", description: "SkyMesh — P2P aircraft conflict resolution simulator.",
       language: "Python", stars: 0, forks: 0, year: 2026,
       url: "https://github.com/proobker/flight-sim", homepage: null,
-      art: "assets/project-flight-sim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+      art: "assets/project-flight-sim.svg"
     }
   ],
   projects: [
@@ -581,92 +348,133 @@ const fallbackProjectsData = {
       name: "qst", title: "QST", description: "RPG-style social adventure game — AI quests, proof uploads, XP badges.",
       language: "TypeScript", stars: 1, forks: 0, year: 2026,
       url: "https://github.com/proobker/qst", homepage: "https://qst-kappa.vercel.app",
-      art: "assets/qst-logo.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+      art: "assets/qst-logo.svg"
     },
     {
       name: "rakshyaa", title: "RAKSHYAA", description: "V2 of the women's safety app.",
       language: "Kotlin", stars: 2, forks: 1, year: 2026,
       url: "https://github.com/proobker/rakshyaa", homepage: "https://rakshyaa.vercel.app",
-      art: "assets/project-rakshyaa.svg", tags: "KOTLIN // 2★ // 1 FORKS // 2026"
+      art: "assets/project-rakshyaa.svg"
     },
     {
       name: "terrasim", title: "TERRASIM", description: "Terrain simulation engine.",
       language: "Python", stars: 0, forks: 0, year: 2026,
       url: "https://github.com/proobker/terrasim", homepage: null,
-      art: "assets/project-terrasim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+      art: "assets/project-terrasim.svg"
     },
     {
       name: "flight-sim", title: "FLIGHT SIM", description: "SkyMesh — P2P aircraft conflict resolution simulator.",
       language: "Python", stars: 0, forks: 0, year: 2026,
       url: "https://github.com/proobker/flight-sim", homepage: null,
-      art: "assets/project-flight-sim.svg", tags: "PYTHON // 0★ // 0 FORKS // 2026"
+      art: "assets/project-flight-sim.svg"
+    },
+    {
+      name: "cracked", title: "CRACKED", description: "A 3D first-person shooter built in Godot.",
+      language: "GDScript", stars: 0, forks: 0, year: 2026,
+      url: "https://github.com/proobker/cracked", homepage: null,
+      art: "assets/project-cracked.svg"
     },
     {
       name: "rakshya_app", title: "RAKSHYA APP", description: "One-tap SOS personal safety mobile app (V1).",
       language: "TypeScript", stars: 1, forks: 0, year: 2026,
       url: "https://github.com/proobker/rakshya_app", homepage: "https://rakshyaapp.github.io",
-      art: "assets/project-rakshya.svg", tags: "TYPESCRIPT // 1★ // 0 FORKS // 2026"
+      art: "assets/project-rakshya.svg"
     },
     {
       name: "rubiks-solver", title: "RUBIKS SOLVER", description: "Interactive guide to solve a Rubik's cube and learn notation.",
       language: "TypeScript", stars: 0, forks: 0, year: 2026,
       url: "https://github.com/proobker/rubiks-solver", homepage: null,
-      art: "assets/project-rubiks.svg", tags: "TYPESCRIPT // 0★ // 0 FORKS // 2026"
-    },
-    {
-      name: "bnks", title: "BNKS", description: "Hackathon shipment — banking simulation built under pressure.",
-      language: "TypeScript", stars: 0, forks: 0, year: 2026,
-      url: "https://github.com/proobker/bnks", homepage: "https://bnks-nu.vercel.app",
-      art: "assets/project-bnks.svg", tags: "TYPESCRIPT // 0★ // 0 FORKS // 2026"
+      art: "assets/project-rubiks.svg"
     },
     {
       name: "A_Star_Algoritihm", title: "A* PATHFINDER", description: "Complete A* pathfinding visualizer for black-and-white map images.",
       language: "Python", stars: 1, forks: 0, year: 2025,
       url: "https://github.com/proobker/A_Star_Algoritihm", homepage: null,
-      art: "assets/project-pathfinder.svg", tags: "PYTHON // 1★ // 0 FORKS // 2025"
+      art: "assets/project-pathfinder.svg"
     }
   ]
 };
 
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+}[ch]));
+
+const pad = (n) => String(n).padStart(2, '0');
+
+const describe = (proj) => proj.description || 'Source code and notes on GitHub.';
+
 const repoItemMarkup = (repo, index) => `
-  <a class="repo-item" href="${repo.url || repo.html_url}" target="_blank" rel="noreferrer noopener">
-    <div class="repo-index">${String(index + 1).padStart(2, '0')}</div>
-    <div class="repo-title">${repo.title || repo.name}</div>
-    <div class="repo-info">${repo.language || '---'} // ${repo.stars ?? 0}★</div>
+  <a class="repo-item" href="${escapeHtml(repo.url || repo.html_url)}" target="_blank" rel="noreferrer noopener">
+    <div class="repo-index font-mono">${pad(index + 1)}</div>
+    <div class="repo-main">
+      <div class="repo-title">${escapeHtml(repo.title || repo.name)}</div>
+      <div class="repo-desc">${escapeHtml(describe(repo))}</div>
+    </div>
+    <div class="repo-info font-mono">${escapeHtml(repo.language || '—')} · ${repo.stars ?? 0}★</div>
   </a>
 `;
 
 const arcMarkup = (proj, index) => `
-  <div class="grid-span-6 arc-container">
-    <a class="arc-reactor" href="${proj.homepage || proj.url}" target="_blank" rel="noreferrer noopener" aria-label="Open ${proj.title}">
-      <img src="${proj.art}" alt="Arc casing ${String(index + 1).padStart(2, '0')}" class="reactor-casing filter-bw">
+  <article class="grid-span-6 arc-container">
+    <a class="arc-reactor" href="${escapeHtml(proj.homepage || proj.url)}" target="_blank" rel="noreferrer noopener" aria-label="Open ${escapeHtml(proj.title)}">
+      <img src="${escapeHtml(proj.art)}" alt="" class="reactor-casing" loading="lazy">
       <div class="reactor-core" aria-hidden="true"></div>
     </a>
-    <div class="arc-meta font-mono">
-      <div class="arc-index">04.${index + 1} // ${(proj.language || 'MULTI').toUpperCase()}</div>
-      <div class="arc-title">${proj.title}${proj.homepage ? ' ↗' : ''}</div>
-      <div class="arc-tags">${proj.tags}</div>
+    <div class="arc-meta">
+      <div class="arc-index font-mono">${pad(index + 1)} / ${escapeHtml(proj.year)}</div>
+      <h3 class="arc-title">${escapeHtml(proj.title)}</h3>
+      <p class="arc-desc">${escapeHtml(describe(proj))}</p>
+      <ul class="arc-tags font-mono">
+        <li class="tag">${escapeHtml(proj.language || 'Multi')}</li>
+        <li class="tag">${proj.stars ?? 0}★</li>
+      </ul>
+      <div class="arc-links font-mono">
+        ${proj.homepage ? `<a href="${escapeHtml(proj.homepage)}" target="_blank" rel="noreferrer noopener">Live demo ↗</a>` : ''}
+        <a href="${escapeHtml(proj.url)}" target="_blank" rel="noreferrer noopener">Source ↗</a>
+      </div>
     </div>
-  </div>
+  </article>
 `;
 
 const projectRowMarkup = (proj, index) => `
-  <tr class="project-row" data-preview="${proj.art}">
-    <td>${String(index + 1).padStart(2, '0')}</td>
-    <td class="display-row-title">${proj.title}</td>
-    <td>${proj.language || '---'}</td>
-    <td>${proj.year}</td>
+  <tr class="project-row" data-preview="${escapeHtml(proj.art)}" data-href="${escapeHtml(proj.homepage || proj.url)}" tabindex="0">
+    <td class="font-mono row-index">${pad(index + 1)}</td>
+    <td class="display-row-title">${escapeHtml(proj.title)}</td>
+    <td class="col-desc row-desc">${escapeHtml(describe(proj))}</td>
+    <td class="font-mono">${escapeHtml(proj.language || '—')}</td>
+    <td class="font-mono">${escapeHtml(proj.year)}</td>
   </tr>
 `;
+
+function setupProjectRowLinks() {
+  const tableBody = document.getElementById('project-table-body');
+  if (!tableBody) return;
+
+  const openRow = (row) => {
+    const href = row && row.getAttribute('data-href');
+    if (href) window.open(href, '_blank', 'noopener');
+  };
+
+  tableBody.addEventListener('click', (e) => openRow(e.target.closest('.project-row')));
+  tableBody.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') openRow(e.target.closest('.project-row'));
+  });
+}
 
 function renderProjectsData(data) {
   const arcGallery = document.getElementById('arc-gallery');
   const tableBody = document.getElementById('project-table-body');
   const repoList = document.getElementById('gh-repo-list');
+  const statProjects = document.getElementById('stat-projects');
 
   if (arcGallery) arcGallery.innerHTML = data.arcs.map(arcMarkup).join('');
   if (tableBody) tableBody.innerHTML = data.projects.map(projectRowMarkup).join('');
-  if (repoList) repoList.innerHTML = data.projects.map(repoItemMarkup).join('');
+  if (repoList) repoList.innerHTML = data.projects.slice(0, 6).map(repoItemMarkup).join('');
+
+  if (statProjects) {
+    statProjects.setAttribute('data-target', String(data.projects.length));
+    if (statsTriggered) fireStatsCounter();
+  }
 }
 
 async function loadProjectsData() {
@@ -683,11 +491,11 @@ async function loadGitHubData() {
   if (!ghRepos || !ghFollowers || !ghUpdated) return;
 
   const setGitHubStats = (user) => {
-    ghRepos.textContent = String(user.public_repos ?? '--');
-    ghFollowers.textContent = String(user.followers ?? '--');
+    ghRepos.textContent = String(user.public_repos ?? '—');
+    ghFollowers.textContent = String(user.followers ?? '—');
     ghUpdated.textContent = user.updated_at
       ? new Date(user.updated_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short' })
-      : 'recent';
+      : '—';
 
     const statRepos = document.getElementById('stat-repos');
     const statFollowers = document.getElementById('stat-followers');
@@ -704,61 +512,65 @@ async function loadGitHubData() {
     if (!userRes.ok) throw new Error("GitHub API unavailable");
     setGitHubStats(await userRes.json());
   } catch (error) {
-    ghRepos.textContent = '3+';
-    ghFollowers.textContent = 'Growing';
-    ghUpdated.textContent = 'In progress';
+    ghRepos.textContent = '—';
+    ghFollowers.textContent = '—';
+    ghUpdated.textContent = '—';
   }
 }
 
 // ==========================================
-// 11. Frame Loop & Initialization
+// 7. Frame Loop & Initialization
 // ==========================================
 function loop() {
   updateCursorPosition();
-  updateHandRotation();
-  updateAccentInterpolation();
   trackScrollPositions();
   requestAnimationFrame(loop);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+function init() {
   setupTextSplitting();
   setupCursorHovers();
   setupMagneticButtons();
   setupScrollObservers();
   setupFloatingPreviews();
-  setupPointingHand();
-  runIntroSequence();
+  setupProjectRowLinks();
   loadProjectsData();
   loadGitHubData();
 
   requestAnimationFrame(loop);
-});
+}
+
+// Module scripts are deferred, so DOMContentLoaded may already have fired.
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 
 // --- MOBILE MENU LOGIC ---
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const sidebarNav = document.getElementById('sidebar-nav');
 
 if (mobileMenuBtn && sidebarNav) {
+  const closeMenu = () => {
+    sidebarNav.classList.remove('menu-open');
+    mobileMenuBtn.classList.remove('menu-open');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  };
+
   mobileMenuBtn.addEventListener('click', () => {
     const isOpen = sidebarNav.classList.toggle('menu-open');
     mobileMenuBtn.classList.toggle('menu-open');
     mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
   });
 
-  sidebarNav.querySelectorAll('.nav-item').forEach(link => {
-    link.addEventListener('click', () => {
-      sidebarNav.classList.remove('menu-open');
-      mobileMenuBtn.classList.remove('menu-open');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    });
+  sidebarNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sidebarNav.classList.contains('menu-open')) {
-      sidebarNav.classList.remove('menu-open');
-      mobileMenuBtn.classList.remove('menu-open');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      closeMenu();
       mobileMenuBtn.focus();
     }
   });

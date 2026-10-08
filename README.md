@@ -1,6 +1,6 @@
 # Rabi Dahal — Industrial Brutalist Portfolio
 
-Personal portfolio of **Rabi Dahal**, embedded systems, IoT & automation engineer. A static, scroll-driven one-pager with a WebGL arc-reactor disc, Web Audio synth, a custom reticle cursor, a VEKTOR guide character, and live GitHub integration.
+Personal portfolio of **Rabi Dahal** ([@proobker](https://github.com/proobker)), a software developer in Bhaktapur, Nepal building web apps, Android apps, simulations and games. A static, scroll-driven one-pager with a WebGL arc-reactor disc, optional interface sounds, a custom reticle cursor, and live GitHub integration.
 
 Live at: [https://rabidahal.com.np](https://rabidahal.com.np) → mirror at [https://proobker.github.io/](https://proobker.github.io/)
 
@@ -26,16 +26,13 @@ No build step, no bundler, no transpilation.
 
 ## Features
 
-- **Boot sequence** intro overlay with load bar (`00 / INTRO`)
 - **WebGL arc reactor** — spinning disc in the hero, tilt follows the mouse, spin accelerates with scroll
 - **Custom reticle cursor** that enlarges over interactive elements (hidden on touch devices)
 - **Magnetic buttons** and hover/click Web Audio blips (mute toggle, top-right)
-- **VEKTOR guide character** — drawn + typed narration per section
 - **Count-up stat counters** triggered on scroll into section `03`
 - **Floating project previews** that follow the cursor over project rows
 - **Timeline** with a scroll-progress fill
 - **Live GitHub stats** (repos, followers, last updated) with offline fallbacks
-- **Accent color control** — "vibe" presets interpolate a CSS custom property live
 - **Responsive** desktop left-rail nav + mobile hamburger menu
 - **Noscript fallback** — content still accessible without JavaScript
 
@@ -44,7 +41,7 @@ No build step, no bundler, no transpilation.
 ```
 index.html                     Semantic structure, import map, noscript fallback
 styles.css                     Complete design system via CSS custom properties
-script.js                      Interactions: cursor, audio, VEKTOR, GitHub, accent control
+script.js                      Interactions: cursor, audio, scroll reveals, projects, GitHub
 webgl.js                       Three.js reactor disc (background layer)
 assets/
   Rabi-Dahal-Profile.png       Portrait
@@ -89,10 +86,9 @@ Push to `main` and GitHub serves the static files directly — no Actions build 
 ## Customizing
 
 - **Palette / theme** — edit the custom properties in `:root` of `styles.css` (`--bg`, `--fg`, `--panel`, `--accent`, …)
-- **Default accent** — default RGB in `script.js` (accent interpolation) and the first vibe button in `index.html`
+- **Default accent** — `--accent` in `:root` of `styles.css`
 - **Projects shown** — edit `MANIFEST` in `.github/scripts/refresh-projects.mjs`, then re-run the script
 - **GitHub fallback repos** — `fallbackProjectsData` in `script.js`
-- **VEKTOR narrations / section text** — `vektorNarrations` in `script.js`; copy lives in `index.html`
 
 ## License
 
