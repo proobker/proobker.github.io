@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T08:27:33.200Z",
+  "generatedAt": "2026-10-20T08:09:15.815Z",
   "arcs": [
     {
       "name": "qst",
@@ -131,7 +131,7 @@
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-10-15T14:01:18Z",
+      "updated_at": "2026-10-19T10:41:49Z",
       "url": "https://github.com/proobker/cracked",
       "homepage": null,
       "art": "assets/project-cracked.svg",
