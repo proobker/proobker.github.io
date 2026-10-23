@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T08:16:36.830Z",
+  "generatedAt": "2026-10-23T08:13:30.916Z",
   "arcs": [
     {
       "name": "qst",
@@ -24,7 +24,7 @@
       "stars": 2,
       "forks": 1,
       "year": 2026,
-      "updated_at": "2026-09-27T10:00:58Z",
+      "updated_at": "2026-10-22T11:51:13Z",
       "url": "https://github.com/proobker/rakshyaa",
       "homepage": "https://rakshyaa.vercel.app",
       "art": "assets/project-rakshyaa.svg",
@@ -86,7 +86,7 @@
       "stars": 2,
       "forks": 1,
       "year": 2026,
-      "updated_at": "2026-09-27T10:00:58Z",
+      "updated_at": "2026-10-22T11:51:13Z",
       "url": "https://github.com/proobker/rakshyaa",
       "homepage": "https://rakshyaa.vercel.app",
       "art": "assets/project-rakshyaa.svg",
