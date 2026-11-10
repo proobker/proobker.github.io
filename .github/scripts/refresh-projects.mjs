@@ -18,13 +18,13 @@ const HEADERS = {
 // Curated showcase: 8 original projects, arc-tier first (most complex).
 const MANIFEST = [
   { name: 'qst',         tier: 'primary',   art: 'assets/qst-logo.svg' },
-  { name: 'rakshyaa',    tier: 'primary',   art: 'assets/project-rakshyaa.svg' },
-  { name: 'terrasim',    tier: 'primary',   art: 'assets/project-terrasim.svg' },
-  { name: 'flight-sim',  tier: 'primary',   art: 'assets/project-flight-sim.svg' },
-  { name: 'cracked',     tier: 'secondary', art: 'assets/project-cracked.svg' },
-  { name: 'rakshya_app', tier: 'secondary', art: 'assets/project-rakshya.svg' },
+  { name: 'rakshyaa',    tier: 'primary',   art: 'assets/project-rakshyaa.svg', homepage: 'https://rakshyaapp.github.io' },
+  { name: 'terrasim',    tier: 'primary',   art: 'assets/project-terrasim.svg', homepage: 'https://terrasim.rabidahal.com.np' },
+  { name: 'flight-sim',  tier: 'primary',   art: 'assets/project-flight-sim.svg', homepage: 'https://flightsim.rabidahal.com.np' },
+  { name: 'cracked',     tier: 'secondary', art: 'assets/project-cracked.svg', homepage: 'https://cracked.rabidahal.com.np' },
   { name: 'rubiks-solver', tier: 'secondary', art: 'assets/project-rubiks.svg' },
-  { name: 'A_Star_Algoritihm', tier: 'secondary', art: 'assets/project-pathfinder.svg', title: 'A* PATHFINDER' }
+  { name: 'trail-track', tier: 'secondary', art: 'assets/project-trail-track.svg' },
+  { name: 'Geo_Quiz',    tier: 'secondary', art: 'assets/project-geo-quiz.svg' }
 ];
 
 const toTitle = (name) =>
@@ -69,7 +69,7 @@ function enrich(repo, manifestEntry) {
     year: new Date(repo.created_at).getFullYear(),
     updated_at: repo.pushed_at || repo.updated_at,
     url: repo.html_url,
-    homepage: repo.homepage || null,
+    homepage: manifestEntry.homepage || repo.homepage || null,
     art: manifestEntry.art,
     tags: toTags(repo),
     tier: manifestEntry.tier

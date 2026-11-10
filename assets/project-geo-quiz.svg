@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#111"/>
+  <path d="M0 120h800M0 240h800M0 360h800M0 480h800M0 600h800M120 0v800M240 0v800M360 0v800M480 0v800M600 0v800M720 0v800" stroke="#292929" stroke-width="2"/>
+  <path d="M400 168c-105 0-190 79-190 178 0 139 190 292 190 292s190-153 190-292c0-99-85-178-190-178z" fill="none" stroke="#00e5ff" stroke-width="12"/>
+  <circle cx="400" cy="346" r="76" fill="#ff4d00"/><text x="376" y="372" fill="#111" font-family="monospace" font-size="74" font-weight="700">?</text>
+  <text x="72" y="680" fill="#f4f4f2" font-family="monospace" font-size="42" font-weight="700" letter-spacing="5">GEO QUIZ</text>
+  <text x="75" y="720" fill="#00e5ff" font-family="monospace" font-size="17" letter-spacing="5">GUESS THE COUNTRY</text>
+</svg>

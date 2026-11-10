@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T10:44:26.384Z",
+  "generatedAt": "2026-11-10T13:30:17.993Z",
   "arcs": [
     {
       "name": "qst",
@@ -19,14 +19,14 @@
     {
       "name": "rakshyaa",
       "title": "RAKSHYAA",
-      "description": "V2 of the previously created women's safety app",
+      "description": "Women's safety app across two iterations: Rakshya v1 and the native Kotlin rebuild, Rakshyaa v2.",
       "language": "Kotlin",
       "stars": 2,
       "forks": 1,
       "year": 2026,
       "updated_at": "2026-10-25T10:56:34Z",
       "url": "https://github.com/proobker/rakshyaa",
-      "homepage": "https://rakshyaa.vercel.app",
+      "homepage": "https://rakshyaapp.github.io",
       "art": "assets/project-rakshyaa.svg",
       "tags": "KOTLIN // 2★ // 1 FORKS // 2026",
       "tier": "primary"
@@ -41,7 +41,7 @@
       "year": 2026,
       "updated_at": "2026-10-07T12:39:22Z",
       "url": "https://github.com/proobker/terrasim",
-      "homepage": null,
+      "homepage": "https://terrasim.rabidahal.com.np",
       "art": "assets/project-terrasim.svg",
       "tags": "PYTHON // 0★ // 0 FORKS // 2026",
       "tier": "primary"
@@ -56,7 +56,7 @@
       "year": 2026,
       "updated_at": "2026-10-11T08:20:48Z",
       "url": "https://github.com/proobker/flight-sim",
-      "homepage": null,
+      "homepage": "https://flightsim.rabidahal.com.np",
       "art": "assets/project-flight-sim.svg",
       "tags": "PYTHON // 0★ // 0 FORKS // 2026",
       "tier": "primary"
@@ -81,14 +81,14 @@
     {
       "name": "rakshyaa",
       "title": "RAKSHYAA",
-      "description": "V2 of the previously created women's safety app",
+      "description": "Women's safety app across two iterations: Rakshya v1 and the native Kotlin rebuild, Rakshyaa v2.",
       "language": "Kotlin",
       "stars": 2,
       "forks": 1,
       "year": 2026,
       "updated_at": "2026-10-25T10:56:34Z",
       "url": "https://github.com/proobker/rakshyaa",
-      "homepage": "https://rakshyaa.vercel.app",
+      "homepage": "https://rakshyaapp.github.io",
       "art": "assets/project-rakshyaa.svg",
       "tags": "KOTLIN // 2★ // 1 FORKS // 2026",
       "tier": "primary"
@@ -103,7 +103,7 @@
       "year": 2026,
       "updated_at": "2026-10-07T12:39:22Z",
       "url": "https://github.com/proobker/terrasim",
-      "homepage": null,
+      "homepage": "https://terrasim.rabidahal.com.np",
       "art": "assets/project-terrasim.svg",
       "tags": "PYTHON // 0★ // 0 FORKS // 2026",
       "tier": "primary"
@@ -118,7 +118,7 @@
       "year": 2026,
       "updated_at": "2026-10-11T08:20:48Z",
       "url": "https://github.com/proobker/flight-sim",
-      "homepage": null,
+      "homepage": "https://flightsim.rabidahal.com.np",
       "art": "assets/project-flight-sim.svg",
       "tags": "PYTHON // 0★ // 0 FORKS // 2026",
       "tier": "primary"
@@ -133,24 +133,9 @@
       "year": 2026,
       "updated_at": "2026-11-02T13:53:18Z",
       "url": "https://github.com/proobker/cracked",
-      "homepage": null,
+      "homepage": "https://cracked.rabidahal.com.np",
       "art": "assets/project-cracked.svg",
       "tags": "GDSCRIPT // 0★ // 0 FORKS // 2026",
-      "tier": "secondary"
-    },
-    {
-      "name": "rakshya_app",
-      "title": "RAKSHYA APP",
-      "description": "Simple App to offer protection to womens",
-      "language": "TypeScript",
-      "stars": 1,
-      "forks": 0,
-      "year": 2026,
-      "updated_at": "2026-04-18T12:10:58Z",
-      "url": "https://github.com/proobker/rakshya_app",
-      "homepage": "https://rakshyaapp.github.io",
-      "art": "assets/project-rakshya.svg",
-      "tags": "TYPESCRIPT // 1★ // 0 FORKS // 2026",
       "tier": "secondary"
     },
     {
@@ -169,18 +154,33 @@
       "tier": "secondary"
     },
     {
-      "name": "A_Star_Algoritihm",
-      "title": "A* PATHFINDER",
-      "description": "Complete A* pathfinding visualizer script that works on top of a black-and-white map image",
+      "name": "trail-track",
+      "title": "TRAIL TRACK",
+      "description": "Turn your photos into an animated trail on a map, with route editing, playback and trip sharing.",
+      "language": "TypeScript",
+      "stars": 0,
+      "forks": 0,
+      "year": 2026,
+      "updated_at": "2026-11-10T00:00:00Z",
+      "url": "https://github.com/proobker/trail-track",
+      "homepage": null,
+      "art": "assets/project-trail-track.svg",
+      "tags": "TYPESCRIPT // 0★ // 0 FORKS // 2026",
+      "tier": "secondary"
+    },
+    {
+      "name": "Geo_Quiz",
+      "title": "GEO QUIZ",
+      "description": "An interactive geography quiz where players identify countries from clues and images.",
       "language": "Python",
-      "stars": 1,
+      "stars": 0,
       "forks": 0,
       "year": 2025,
-      "updated_at": "2025-08-31T09:53:18Z",
-      "url": "https://github.com/proobker/A_Star_Algoritihm",
+      "updated_at": "2025-01-01T00:00:00Z",
+      "url": "https://github.com/proobker/Geo_Quiz",
       "homepage": null,
-      "art": "assets/project-pathfinder.svg",
-      "tags": "PYTHON // 1★ // 0 FORKS // 2025",
+      "art": "assets/project-geo-quiz.svg",
+      "tags": "PYTHON // 0★ // 0 FORKS // 2025",
       "tier": "secondary"
     }
   ]
