@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T13:30:17.993Z",
+  "generatedAt": "2026-11-11T10:16:29.221Z",
   "arcs": [
     {
       "name": "qst",
@@ -19,7 +19,7 @@
     {
       "name": "rakshyaa",
       "title": "RAKSHYAA",
-      "description": "Women's safety app across two iterations: Rakshya v1 and the native Kotlin rebuild, Rakshyaa v2.",
+      "description": "V2 of the previously created women's safety app",
       "language": "Kotlin",
       "stars": 2,
       "forks": 1,
@@ -81,7 +81,7 @@
     {
       "name": "rakshyaa",
       "title": "RAKSHYAA",
-      "description": "Women's safety app across two iterations: Rakshya v1 and the native Kotlin rebuild, Rakshyaa v2.",
+      "description": "V2 of the previously created women's safety app",
       "language": "Kotlin",
       "stars": 2,
       "forks": 1,
@@ -156,12 +156,12 @@
     {
       "name": "trail-track",
       "title": "TRAIL TRACK",
-      "description": "Turn your photos into an animated trail on a map, with route editing, playback and trip sharing.",
+      "description": "Turn your photos into animated trails on a map",
       "language": "TypeScript",
       "stars": 0,
       "forks": 0,
       "year": 2026,
-      "updated_at": "2026-11-10T00:00:00Z",
+      "updated_at": "2026-10-22T06:57:00Z",
       "url": "https://github.com/proobker/trail-track",
       "homepage": null,
       "art": "assets/project-trail-track.svg",
@@ -171,16 +171,16 @@
     {
       "name": "Geo_Quiz",
       "title": "GEO QUIZ",
-      "description": "An interactive geography quiz where players identify countries from clues and images.",
+      "description": "A fun and interactive quiz game where players guess countries of the world. Test your geography knowledge with a simple word challenge",
       "language": "Python",
-      "stars": 0,
+      "stars": 1,
       "forks": 0,
       "year": 2025,
-      "updated_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-08-30T13:32:28Z",
       "url": "https://github.com/proobker/Geo_Quiz",
       "homepage": null,
       "art": "assets/project-geo-quiz.svg",
-      "tags": "PYTHON // 0★ // 0 FORKS // 2025",
+      "tags": "PYTHON // 1★ // 0 FORKS // 2025",
       "tier": "secondary"
     }
   ]
